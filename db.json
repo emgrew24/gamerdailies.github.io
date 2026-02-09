@@ -1,0 +1,46 @@
+{
+    "services": [
+        {
+            "id": 1,
+            "service_title": "Single List",
+            "subscription_needed": false,
+            "subscription_type": "",
+            "price": 0
+        },
+        {
+            "id": 2,
+            "service_title": "One Daily Reminder",
+            "subscription_needed": false,
+            "subscription_type": "",
+            "price": 0
+        },
+        {
+            "id": 3,
+            "service_title": "Color Coding",
+            "subscription_needed": true,
+            "subscription_type": "Base Subscription",
+            "price": 5
+        },
+        {
+            "id": 4,
+            "service_title": "Three Reminders",
+            "subscription_needed": true,
+            "subscription_type": "Base Subscription",
+            "price": 5
+        },
+        {
+            "id": 5,
+            "service_title": "Multiple Lists",
+            "subscription_needed": true,
+            "subscription_type": "Fancy Subscription",
+            "price": 10
+        },
+        {
+            "id": 6,
+            "service_title": "Unlimited Reminders",
+            "subscription_needed": true,
+            "subscription_type": "Fancy Subscription",
+            "price": 10
+        }
+    ]
+}
