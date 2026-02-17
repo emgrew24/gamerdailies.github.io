@@ -3,43 +3,73 @@
         {
             "id": 1,
             "service_title": "Single List",
+            "service_description_short": "Create a single list to store all of your tasks",
+            "service_description_extended": "",
             "subscription_needed": false,
-            "subscription_type": "",
+            "subscription_type": "Basic Package",
             "price": 0
         },
         {
             "id": 2,
             "service_title": "One Daily Reminder",
+            "service_description_short": "Set a reminder that will alert you every day at a time of your choosing",
+            "service_description_extended": "",
             "subscription_needed": false,
-            "subscription_type": "",
+            "subscription_type": "Basic Package",
             "price": 0
         },
         {
             "id": 3,
             "service_title": "Color Coding",
+            "service_description_short": "Color code items in your lists with our default color palette",
+            "service_description_extended": "",
             "subscription_needed": true,
-            "subscription_type": "Base Subscription",
+            "subscription_type": "Quality Of Life Package",
             "price": 5
         },
         {
             "id": 4,
-            "service_title": "Three Reminders",
+            "service_title": "Three Daily Reminders",
+            "service_description_short": "Set up to 3 reminders that will alert you every day at a time of your choosing",
+            "service_description_extended": "",
             "subscription_needed": true,
-            "subscription_type": "Base Subscription",
+            "subscription_type": "Quality Of Life Package",
             "price": 5
         },
         {
             "id": 5,
-            "service_title": "Multiple Lists",
+            "service_title": "Three Lists",
+            "service_description_short": "Create up to 3 lists to organize and store all of your tasks",
+            "service_description_extended": "",
             "subscription_needed": true,
-            "subscription_type": "Fancy Subscription",
+            "subscription_type": "Quality Of Life Package",
             "price": 10
         },
         {
             "id": 6,
             "service_title": "Unlimited Reminders",
+            "service_description_short": "Set an unlimited number of reminders that will alert you every day at a time of your choosing",
+            "service_description_extended": "",
             "subscription_needed": true,
-            "subscription_type": "Fancy Subscription",
+            "subscription_type": "Deluxe Package",
+            "price": 10
+        },
+        {
+            "id": 7,
+            "service_title": "Custom Colors",
+            "service_description_short": "Add your own custom colors and build your own color palettes.",
+            "service_description_extended": "",
+            "subscription_needed": true,
+            "subscription_type": "Deluxe Package",
+            "price": 10
+        },
+        {
+            "id": 8,
+            "service_title": "Unlimited Lists",
+            "service_description_short": "Create an unlimited number of lists to organize and store all of your tasks",
+            "service_description_extended": "",
+            "subscription_needed": true,
+            "subscription_type": "Deluxe Package",
             "price": 10
         }
     ]
