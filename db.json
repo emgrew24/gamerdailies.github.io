@@ -7,7 +7,7 @@
             "service_description_extended": "The perfect entry point for any gamer. Keep all your objectives in one convenient place. Create a single, master list to track your current quests, daily challenges, or collectibles, ensuring you never lose sight of your goals.",
             "payment_needed": false,
             "package_type": "Basic Package",
-            "price": 0
+            "price": 1
         },
         {
             "id": 2,
@@ -16,7 +16,7 @@
             "service_description_extended": "Never miss a daily reset or time-sensitive event again. Set a single, recurring reminder that will ping you at your preferred time every day, helping you maintain consistent habits like collecting login bonuses, checking the in-game shop, or completing daily quests.",
             "payment_needed": false,
             "package_type": "Basic Package",
-            "price": 0
+            "price": 1
         },
         {
             "id": 3,
