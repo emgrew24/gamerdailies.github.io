@@ -3,7 +3,7 @@
         {
             "id": 1,
             "service_title": "Single List",
-            "service_description_short": "Create a single list to store all of your tasks",
+            "service_description_short": "Create a single list to store all of your tasks in one place",
             "service_description_extended": "The perfect entry point for any gamer. Keep all your objectives in one convenient place. Create a single, master list to track your current quests, daily challenges, or collectibles, ensuring you never lose sight of your goals.",
             "payment_needed": false,
             "package_type": "Basic Package",
@@ -12,7 +12,7 @@
         {
             "id": 2,
             "service_title": "One Daily Reminder",
-            "service_description_short": "Set a reminder that will alert you every day at a time of your choosing",
+            "service_description_short": "Set a reminder to alert you every day at a time of your choosing",
             "service_description_extended": "Never miss a daily reset or time-sensitive event again. Set a single, recurring reminder that will ping you at your preferred time every day, helping you maintain consistent habits like collecting login bonuses, checking the in-game shop, or completing daily quests.",
             "payment_needed": false,
             "package_type": "Basic Package",
