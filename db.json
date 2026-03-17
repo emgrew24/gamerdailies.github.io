@@ -26,7 +26,7 @@
             "service_description_short": "Color code items in your lists with our default color palette",
             "service_description_extended": "Bring visual clarity to your task management with our default color palette. Instantly distinguish between quest types, prioritize urgent objectives, or categorize tasks by game—allowing you to assess your workload at a single glance.",
             "package_type": "Basic Package",
-            "price": 5,
+            "price": 1,
             "product_image": "https://emgrew24.github.io/gamerdailies.github.io/new_images/Color_Customization.png",
             "image_alt": "paint-palette"
         },
