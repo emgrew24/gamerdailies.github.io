@@ -10,7 +10,7 @@ const server = http.createServer( (req, res)=>{
     // Main landing page
     if(req.url === '/'){
         fs.readFile( 
-            path.join(__dirname, 'index.html'),
+            path.join(__dirname, 'public', 'index.html'),
                 (err, content)=>{
                     if(err) throw err;
 
@@ -21,7 +21,7 @@ const server = http.createServer( (req, res)=>{
     // Redirects the user to the json database 
     else if (req.url === '/api'){
         fs.readFile(
-            path.join(__dirname, 'db.json'), 'utf-8',
+            path.join(__dirname, 'public', 'db.json'), 'utf-8',
                     (err, content) => {
                         if (err) throw err;
 
