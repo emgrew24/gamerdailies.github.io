@@ -1,0 +1,764 @@
+:root{
+    --main-padding: 8px;
+    --main-radius: 5px;
+    --fill-screen-height: 80vh;
+    --partial-fill-height: 60vh;
+    --option-height: 40vh;
+
+    --section-width: 150vh;
+
+    /*  main colors */
+
+    /* Green */
+    --pale-green: #E0FFCD;
+    --light-green: #BCEF9C;
+    --green: #9FE870;
+    --bright-green: #6DDC25;
+    --dark-green: #376A15;
+    --dark-green-text: #1C3709;
+
+    /* Yellow */
+    --pale-yellow: #FBFFBB;
+    --light-yellow: #F8FD89;
+    --yellow: #FFEA64;
+    --bright-yellow: #FFE228;
+    --dark-yellow: #7E6F0B;
+    --dark-yellow-text: #423904;
+
+    /* Orange */
+    --pale-orange: #FFE894;
+    --light-orange: #FFC342;
+    --orange: #FFAE17;
+    --bright-orange: #EA9902;
+    --dark-orange: #7D560B;
+    --dark-orange-text: #483004;
+
+}
+
+body{
+    font-family: "Outfit", "Times New Roman";
+
+    /* fixes white border issue */
+    margin: 0;
+    padding: 0;
+}
+
+/* Grid container for the main structure */
+#container{
+    display: grid;
+    height: 100vh;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 1.5fr 0.5fr 1.5fr 1.5fr 0.5fr;
+
+    grid-template-areas:
+    "header"
+    "main"
+    "about"
+    "features"
+    "install"
+    "footer"
+    ;
+}
+
+header{
+    grid-area: header;
+}
+
+nav{
+    /* grid-area: nav; */
+
+    background-color: var(--dark-green-text);
+    padding: var(--main-padding);
+}
+
+main{
+    grid-area: main;
+
+    background-image: url('https://emgrew24.github.io/gamerdailies.github.io/assets/images/Swirl_Background.png');
+    background-size: cover;
+    background-attachment: fixed;
+
+    padding: var(--main-padding);
+    height: 100vh;    
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#about{
+    grid-area: about;
+
+    height: var(--partial-fill-height);
+    background-color: var(--light-green);
+    padding: var(--main-padding);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#features{
+    grid-area: features;
+
+    background-color: var(--yellow);
+    padding: var(--main-padding);
+    height: auto;
+    color: var(--dark-orange-text);
+
+    font-size: 20px;
+    font-weight: 400;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#install{
+    grid-area: install;
+
+    height: auto;
+    background-color: var(--light-yellow);
+    padding-bottom: 3%;
+    color: var(--dark-orange-text);
+    gap: 1rem;
+
+    font-size: 20px;
+    font-weight: 400;
+
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+footer{
+    grid-area: footer;
+
+    color: var(--pale-yellow);
+    background-color: var(--dark-yellow);
+    padding: var(--main-padding);
+    gap: 2rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Grid area for nav bar */
+#navContainer{
+    display: grid;
+    gap: 5rem;
+    
+    grid-template-columns: 0.8fr, 1.2fr;
+    grid-template-rows: 0.8fr;
+
+    grid-template-areas: 
+    "brandName pageLinks"
+    ;
+
+}
+
+/* Flex styles for nav bar */
+#navBrandName{
+    grid-area: brandName;
+    gap: 1rem;
+
+    border-radius: var(--main-radius);
+    padding: var(--main-padding);
+    color: var(--light-green);
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#brandImage{
+    width: 60px;
+    height: 60px;
+}
+
+#navPageLinks{
+    grid-area: pageLinks;
+    gap: 3rem;
+
+    border-radius: var(--main-radius);
+    padding: var(--main-padding);
+    color: var(--dark-green);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.menu-Icon{
+    display: none;
+}
+
+#menuIcon{
+    display: none;
+}
+
+.menu{
+    display: none;
+}
+
+.fa-solid{
+    display: none;
+}
+
+/* Flex styles for main */
+#tagline{
+    border-radius: var(--main-radius);
+    padding: var(--main-padding);
+    gap: 1rem;
+
+    color: var(--pale-green);
+    font-size: 20px;
+    font-weight: 400;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: flex-start;
+
+}
+
+
+/* Flex styles for the about section */
+#aboutSection{
+    border-radius: var(--main-radius);
+    padding: 2% 2%;
+    width: var(--section-width);
+
+    background-image: url('https://emgrew24.github.io/gamerdailies.github.io/assets/images/Alt_Swirl_Background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+#description{
+    border-radius: var(--main-radius);
+    padding: var(--main-padding);
+
+    color: var(--pale-green);
+    font-weight: 400;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+}
+
+
+/* Flex area for the features list */
+#featureList{
+    height: auto;
+    width: auto;
+    padding: var(--main-padding);
+    gap: 4rem;
+
+    font-size: 15px;
+    font-weight: 400;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.featureImage{
+    width: 300px;
+    height: 300px;
+}
+
+.featureListStyle{
+    width: 350px;
+    background-color: var(--light-yellow);
+    border-radius: var(--main-radius);
+    padding: 2%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: center;
+}
+
+.btnFeatureList{
+    display: flex;
+    align-items: center;
+}
+
+.centerText{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+
+/* Styles for additional features */
+#additionalFeatures{
+    /* height: auto; */
+    width: auto;
+    padding: 1% 3%;
+    gap: 2rem;
+
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--dark-green-text);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.additionalFeatureStyle{
+    width: 330px;
+    background-color: var(--green);
+    border-radius: var(--main-radius);
+    padding: 1%;
+    margin: 2%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: center;
+}
+
+
+.featureText{
+    margin-top: -1%;
+}
+
+.titleText{
+    margin-bottom: -1%;
+}
+
+
+/* Flex styles for install options */
+#installDescription{
+    background-color: var(--yellow);
+    border-radius: var(--main-radius);
+    margin-bottom: 1%;
+    width: 160vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.installDesc{
+    padding: 1% 1%;
+    margin: 1% -1%;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#installOptions{
+    height: auto;
+    width: 83%;
+    gap: 4rem;
+
+    font-size: 18px;
+    font-weight: 400;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.installOptionStyle{
+    border-radius: var(--main-radius);
+    padding: 1% 3%;
+    width: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.installOptionTitle{
+    margin-bottom: 2%;
+    text-decoration: underline;
+}
+
+.installOptionText{
+    margin-top: 3%;
+    margin-bottom: 5%;
+}
+
+.installOptionList{
+    margin-top: -2%;
+    margin-bottom: 1%;
+}
+
+.installOptionPrice{
+    margin-top: -1%;
+    margin-bottom: 1%;
+}
+
+#package1{
+    background-color: var(--light-orange);
+}
+
+#package2{
+    background-color: var(--orange);
+}
+
+#package3{
+    background-color: var(--bright-orange);
+}
+
+
+
+/* Button styling */
+
+button{
+    border-radius: 10px;
+    border-width: 3px;
+    border-style: solid;
+    text-align: center;
+    font-size: 20px;
+}
+
+
+.btnPlainGreen{
+    background-color: var(--bright-green);
+    border-color: var(--bright-green);
+    color: var(--dark-green-text);
+    height: 60px;
+    width: 150px;
+
+    font-size: 25px;
+}
+
+.btnPlainGreen:hover{
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.btnPlainDarkGreen{
+    background-color: var(--dark-green);
+    border-color: var(--dark-green);
+    color: var(--bright-green);
+    height: 60px;
+    width: 150px;
+
+    font-size: 25px;
+}
+
+.btnPlainDarkGreen:hover{
+    background-color: var(--dark-green-text);
+    border-color: var(--dark-green-text);
+}
+
+.btnPlainYellow{
+    background-color: var(--bright-yellow);
+    border-color: var(--bright-yellow);
+    color: var(--dark-yellow-text);
+    height: 60px;
+    width: 160px;
+
+    font-size: 25px;
+}
+
+.btnPlainYellow:hover{
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.btnPlainOrange{
+    background-color: var(--bright-orange);
+    border-color: var(--bright-orange);
+    color: var(--dark-orange-text);
+    height: 40px;
+
+    font-size: 15px;
+}
+
+.btnPlainOrange:hover{
+    background-color: var(--orange);
+    border-color: var(--orange);
+}
+
+.btnAdditionalFeatures{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: auto;
+
+    font-size: 15px;
+}
+
+.installBtn{
+    height: auto;
+    width: auto;
+
+    padding: 3% 4%;
+
+    border-color: var(--dark-orange-text);
+    font-size: 20px;
+}
+
+
+
+
+.visible{
+    display: flex !important;
+}
+
+
+/* Mobile view of the website ---------------------------------------------*/
+
+
+@media only screen and (max-width:500px){
+
+    #container{
+        /* max-width: 400px; */
+
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.5fr 1.5fr 0.5fr 1.5fr 1.5fr 0.5fr;
+
+        grid-template-areas:
+        "header"
+        "main"
+        "about"
+        "features"
+        "install"
+        "footer"
+        ;
+    }
+
+    /* header */
+
+    /* nav */
+
+
+    main{
+        height: 60vh;
+        flex-direction: column;
+    }
+
+
+    #about{
+        height: auto;
+        flex-direction: column;
+    }
+
+    #features{
+        height: auto;
+        flex-direction: column;
+    }
+
+    #install{
+        height: auto;
+        flex-direction: column;
+    }
+
+    footer{
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+
+    /* Flex styles for nav bar */
+
+    #navContainer{
+        gap: 1rem;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    #navBrandName{
+        font-size: 10px;
+    }
+
+    #brandImage{
+        width: 40px;
+        height: 40px;
+    }
+
+    #navPageLinks{
+        display: none;
+    }
+
+    #menuIcon{
+        display: block;
+    }
+
+    /* Styling the hamburger menu */
+    .menu-icon{
+        padding: var(--main-padding);
+        font-size: 60px;
+        display: block;
+    }
+
+    .menu{
+        background-color: var(--light-green);
+        color: var(--dark-green-text);
+        border: 2px solid  var(--dark-green);
+        border-radius: var(--main-radius);
+
+        top: 80px;
+        left: 235px;
+        width: 150px;
+
+        position: absolute;
+        display: none;
+    }
+
+    .fa-solid{
+        display: block;
+        color: var(--bright-green);
+    }
+
+
+    .menu.active{
+        display: block;
+    }
+
+    .menu ul {
+        list-style: none;
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .menu a{
+        text-decoration: none;
+        color: var(--dark-green-text);
+        background-color: transparent;
+    }
+
+    .menu a:visited{
+        text-decoration: none;
+        color: var(--dark-green-text);
+    }
+
+
+    .menu ul li {
+        padding: 15px 20px;
+        border-bottom: 6px solid;
+    }
+
+    .menu ul li:last-child {
+        border-bottom: none;
+    }
+
+
+    
+    /* Flex styles for main */
+    #tagline{
+        width: 30vh;
+
+        font-size: 8pt;
+        justify-items: center;
+        align-content: center;
+    }
+
+
+    /* Flex styles for the about section */
+    #aboutSection{
+        width: 45vh;
+
+        justify-content: center;
+    }
+
+
+    /* Flex area for the features list */
+    #featureList{
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    .featureImages{
+        width: 100px;
+        height: 100px;
+
+        display: flex;
+        flex-wrap: wrap-reverse;
+        align-self: flex-start;
+    }
+
+    .featureListStyle{
+        width: 50vh;
+        gap: 1rem;
+
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+
+    #additionalFeatures{
+        flex-direction: column;
+    }
+
+
+  
+
+
+    /* Flex styles for install options */
+    #installDescription{
+        width: 55vh;
+        font-size: 15px;
+    }
+
+    #installOptions{
+        height: auto;
+        width: 60%;
+        gap: 2rem;
+
+        font-size: 15px;
+        font-weight: 400;
+
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .installOptionStyle{
+        width: auto;
+    }
+
+
+
+    /* Button styling */
+    .btnPlainDarkGreen{
+        height: 40px;
+        width: 130px;
+
+        font-size: 20px;
+    }
+
+    .btnPlainYellow{
+        height: 70px;
+        width: 100px;
+
+        font-size: 25px;
+    }
+
+}
+
+
