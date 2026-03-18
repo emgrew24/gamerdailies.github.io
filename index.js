@@ -2,7 +2,9 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-// Website link: http://localhost:5959/
+// Website link if hosting from node: http://localhost:5959/
+// Website link if hosting from github: https://emgrew24.github.io/gamerdailies.github.io/
+// Website link from hosting on Vercel: https://gamer-dailies.vercel.app/
 
 // Creating the server
 const server = http.createServer( (req, res)=>{
