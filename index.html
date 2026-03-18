@@ -878,20 +878,11 @@
         </style>
 
         <script>
-
-            // Code from the index.js file
-
-
-
-
-
-
-
             // Create the features list by getting database data
             async function getFeatureList(){
 
                 try{
-                    const response = await fetch("https://emgrew24.github.io/gamerdailies.github.io/public/db.json");
+                    const response = await fetch("https://emgrew24.github.io/gamerdailies.github.io/db.json");
                     
                     const data = await response.json();
 
@@ -959,7 +950,7 @@
             async function getAdditionalFeatures(){
 
                 try{
-                    const response = await fetch("https://emgrew24.github.io/gamerdailies.github.io/public/db.json");
+                    const response = await fetch("https://emgrew24.github.io/gamerdailies.github.io/db.json");
                     
                     const data = await response.json();
 
@@ -1025,7 +1016,7 @@
             async function getPackageDetails(){
 
                 try {
-                    const response = await fetch("https://emgrew24.github.io/gamerdailies.github.io/public/db.json");
+                    const response = await fetch("https://emgrew24.github.io/gamerdailies.github.io/db.json");
                     
                     const data = await response.json();
 
