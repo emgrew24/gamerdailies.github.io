@@ -7,6 +7,12 @@ const path = require('path');
 // Connecting the index.js to Vercel so it will launch from here 
 // instead of directly from the html to allow the routing.
 
+// Getting MongoDB setup
+const {MongoClient} = require('mongodb');
+require('dotenv').config();
+const uri = process.env.MONGO_URI;
+
+const client = new MongoClient(uri);
 
 // Creating the server (second attempt with some research)
 module.exports = (req, res)=>{
