@@ -1,2 +1,11 @@
 # Ignore the .env file to keep the database link secure
 .env
+
+# Ignore the massive node modules folder and related package files
+node_modules/
+
+package-lock.json
+package.json
+
+# Ignore the vercel server file
+vercel.json
