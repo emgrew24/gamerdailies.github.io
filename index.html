@@ -933,7 +933,6 @@
                             feature_list.appendChild(feature);
                         })
 
-
                     })
 
                 }catch(error){
@@ -947,17 +946,16 @@
             async function getAdditionalFeatures(){
 
                 try{
-                    const response = await fetch("https://emgrew24.github.io/gamerdailies.github.io/db.json");
-                    
-                    const data = await response.json();
+                    const data = await fetch('/api')
+                    .then(res => res.json())
+                    .then(service => {
+                        const additional_features = document.getElementById('additionalFeatures');
 
-                    const additional_features = document.getElementById('additionalFeatures');
+                        // Filter for everything but the basic package items and display those only
+                        const packageFilter = service.filter(s => s.package_type !== "Basic Package")
+                        // Add each element
+                        packageFilter.forEach(service =>{
 
-                    // Get data into the display of features
-                    for (let service of data.services){
-
-                        // Ensure that the first 3 features are skipped
-                        if(service.id >=4 ){
                             const feature = document.createElement('div');
 
                             // Assign the id's of each feature being displayed
@@ -997,11 +995,9 @@
 
                             // Append the new HTML to an existing element
                             additional_features.appendChild(feature);
-                        }
+                        })
 
-                        
-
-                    };
+                    })
 
                 }catch(error){
                     console.log("An error has occured while loading the additional feature list ->", error);
