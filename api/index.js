@@ -11,6 +11,9 @@ const http = require('http');
 // Getting MongoDB setup
 const {MongoClient} = require('mongodb');
 require('dotenv').config();
+
+// In order for this to work properly with vercel you need to add the MONGO_URI
+// as an environment variable in your vercel project settings. 
 const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri);
@@ -25,8 +28,6 @@ async function connectDB(){
         console.error(
             "Server -- MongoDB connection failed ? :", e
         );
-        // Exit from program if database fails
-        // process.exit(1);
     }
 
 }

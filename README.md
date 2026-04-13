@@ -6,5 +6,3 @@
 - npm install nodemon
 
 =======================
-# Test with the script
-- npm run dev
