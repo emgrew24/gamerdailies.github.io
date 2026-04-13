@@ -1,11 +1,15 @@
-# Ignore the .env file to keep the database link secure
-.env
+# # Ignore the .env file to keep the database link secure
+# .env
 
-# Ignore the massive node modules folder and related package files
-node_modules
+# # Ignore the massive node modules folder and related package files
+# node_modules
 
-package-lock.json
-package.json
+# package-lock.json
+# package.json
 
-# Ignore the vercel server file
-vercel.json
+# # Ignore the vercel server file
+# vercel.json
+
+# Ignore the css and js file not being used
+script.js
+styles.css

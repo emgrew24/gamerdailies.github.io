@@ -14,6 +14,22 @@ const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri);
 
+let packageData;
+async function connectDB(){
+    try{
+        await client.connect();
+        packageData = client.db("gamer_dailies").collection("services");
+        console.log("Server -- Connected to MongoDB");
+    }catch(e){
+        console.error(
+            "Server -- MongoDB connection failed ? :", e
+        );
+        // Exit from program if database fails
+        process.exit(1);
+    }
+
+}
+
 // Creating the server (second attempt with some research)
 module.exports = (req, res)=>{
 
@@ -29,16 +45,16 @@ module.exports = (req, res)=>{
                 });
     }
     // Redirects the user to the json database 
-    else if (req.url === '/api'){
-        fs.readFile(
-            path.join(process.cwd(), 'db.json'), 'utf-8',
-                    (err, content) => {
-                        if (err) throw err;
-
-                        res.writeHead(200, {'Content-Type': 'application/json'});
-                        res.end(content);
-                    }
-        );
+    else if (req.url === '/api' && req.method === 'GET'){
+       packageData.find({}).toArray().then(
+        results => {
+            res.writeHead(200, {'Content-Type': 'application/json'})
+            res.end(JSON.stringify(results));
+        }
+       ).catch(err => {
+            res.writeHead(500, {'Content-Type': 'application/json'})
+            res.end(JSON.stringify({error: "Failed to fetch package data"}))
+       })
     }
     else{
         res.writeHead(404,{'Content-Type': 'text/html'});

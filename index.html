@@ -878,11 +878,14 @@
         </style>
 
         <script>
+            // Use MongoDB database instead of file
+            const {MongoClient} = require('mongodb');
+
             // Create the features list by getting database data
             async function getFeatureList(){
 
                 try{
-                    const response = await fetch("https://emgrew24.github.io/gamerdailies.github.io/db.json");
+                    const response = await fetch('/api');
                     
                     const data = await response.json();
 
