@@ -44,7 +44,7 @@ module.exports = (req, res)=>{
                     res.end(content);
                 });
     }
-    // Redirects the user to the json database 
+    // Redirects the user to the MongoDB database 
     else if (req.url === '/api' && req.method === 'GET'){
        packageData.find({}).toArray().then(
         results => {
