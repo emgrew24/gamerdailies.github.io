@@ -14,21 +14,21 @@ const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri);
 
-let packageData;
-async function connectDB(){
-    try{
-        await client.connect();
-        packageData = client.db("gamer_dailies").collection("services");
-        console.log("Server -- Connected to MongoDB");
-    }catch(e){
-        console.error(
-            "Server -- MongoDB connection failed ? :", e
-        );
-        // Exit from program if database fails
-        process.exit(1);
-    }
+// let packageData;
+// async function connectDB(){
+//     try{
+//         await client.connect();
+//         packageData = client.db("gamer_dailies").collection("services");
+//         console.log("Server -- Connected to MongoDB");
+//     }catch(e){
+//         console.error(
+//             "Server -- MongoDB connection failed ? :", e
+//         );
+//         // Exit from program if database fails
+//         process.exit(1);
+//     }
 
-}
+// }
 
 // Creating the server (second attempt with some research)
 module.exports = (req, res)=>{
