@@ -18,7 +18,7 @@ const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri);
 
-let packageData = null;
+let packageData;
 async function connectDB(){
     try{
         await client.connect();
