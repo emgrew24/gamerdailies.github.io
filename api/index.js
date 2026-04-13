@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
 
 // Website link hosted on Vercel: https://gamer-dailies.vercel.app/
 
@@ -14,31 +15,35 @@ const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri);
 
-// let packageData;
-// async function connectDB(){
-//     try{
-//         await client.connect();
-//         packageData = client.db("gamer_dailies").collection("services");
-//         console.log("Server -- Connected to MongoDB");
-//     }catch(e){
-//         console.error(
-//             "Server -- MongoDB connection failed ? :", e
-//         );
-//         // Exit from program if database fails
-//         process.exit(1);
-//     }
+let packageData = null;
+async function connectDB(){
+    try{
+        await client.connect();
+        packageData = client.db("gamer_dailies").collection("services");
+        console.log("Server -- Connected to MongoDB");
+    }catch(e){
+        console.error(
+            "Server -- MongoDB connection failed ? :", e
+        );
+        // Exit from program if database fails
+        // process.exit(1);
+    }
 
-// }
+}
 
 // Creating the server (second attempt with some research)
-module.exports = (req, res)=>{
+const server = http.createServer ((req, res)=>{
 
     // Main landing page
     if(req.url === '/' || req.url === ''){
         fs.readFile( 
             path.join(process.cwd(), 'index.html'),
                 (err, content)=>{
-                    if(err) throw err;
+                    if(err){
+                        res.writeHead(500, {'Content-Type': 'text/html'});
+                        res.end("<h1> Error loading page</h1>");
+                        return
+                    }
 
                     res.writeHead(200,{'Content-Type': 'text/html'});
                     res.end(content);
@@ -46,12 +51,13 @@ module.exports = (req, res)=>{
     }
     // Redirects the user to the MongoDB database 
     else if (req.url === '/api' && req.method === 'GET'){
-       packageData.find({}).toArray().then(
+        packageData.find({}).toArray().then(
         results => {
             res.writeHead(200, {'Content-Type': 'application/json'})
             res.end(JSON.stringify(results));
         }
        ).catch(err => {
+        console.error("API error: ", err) // Test line
             res.writeHead(500, {'Content-Type': 'application/json'})
             res.end(JSON.stringify({error: "Failed to fetch package data"}))
        })
@@ -61,4 +67,10 @@ module.exports = (req, res)=>{
         res.end("<h1> Nothing is here </h1>");
     }
 
-}; 
+}); 
+
+connectDB()
+
+module.exports = {
+    server
+}
