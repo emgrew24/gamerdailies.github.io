@@ -50,6 +50,18 @@ const server = http.createServer ((req, res)=>{
                     res.end(content);
                 });
     }
+    else if (req.url == '/assets/images/'){
+        fs.readFile(
+            path.join(process.cwd(), '/assets/images/'),
+                (err, content)=>{
+                    if (err) throw err
+
+                    res.writeHead(200, {'Content-Type': 'png'})
+                    res.end(content);
+                }
+        )
+
+    }
     // Redirects the user to the MongoDB database 
     else if (req.url === '/api' && req.method === 'GET'){
         packageData.find({}).toArray().then(
@@ -70,6 +82,7 @@ const server = http.createServer ((req, res)=>{
 
 }); 
 
+// Fires off the connection to the database
 connectDB()
 
 module.exports = server
