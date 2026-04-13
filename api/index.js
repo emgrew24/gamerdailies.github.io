@@ -71,6 +71,4 @@ const server = http.createServer ((req, res)=>{
 
 connectDB()
 
-module.exports = {
-    server
-}
+module.exports = server
