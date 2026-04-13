@@ -1,2 +1,5 @@
 # Hides the env file
 .env
+
+# Ignores the extras file
+extras/
