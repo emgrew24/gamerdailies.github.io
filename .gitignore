@@ -3,3 +3,6 @@
 
 # Ignores the extras file
 extras/
+
+# Ignore the database file (kept as a backup)
+db.json
