@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/assets/styles.css">
+    <title>Gamer Dailies</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/gamer-dailies-logo.png">
+
+    <!-- Linking icons -->
+    <script src="https://kit.fontawesome.com/50bb0b5242.js" crossorigin="anonymous"></script>
+    
+    <!-- Linking the font Outfit from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+        <section id="container">
+            <header>
+                <nav>
+                    <div id="navContainer">
+                        <div id="navBrandName">
+                            <img src="/public/assets/images/gamer-dailies-logo.png" alt="gamer-dailies-logo" id="brandImage">
+                            <h1>Gamer Dailies</h1>
+                        </div>
+                        <div id="navPageLinks">
+                            <a href="#about"> 
+                                <button class="btnPlainGreen"> <strong>About</strong> </button> 
+                            </a> 
+                            <a href="#features"> 
+                                <button class="btnPlainGreen"> <strong>Features </strong> </button>
+                            </a> 
+                            <a href="#install"> 
+                                <button class="btnPlainGreen"> <strong>Install</strong> </button>
+                            </a>
+                        </div>
+                        <i class="fa-solid fa-bars fa-2xl" id="menuIcon"></i>
+                        <div class="menu" id="menu">
+                            <ul>
+                                <a href="#about" class="menuLinks"><li>About</li></a>
+                                <a href="#features" class="menuLinks"><li>Features</li></a>
+                                <a href="#install" class="menuLinks"><li>Install</li></a>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <main>
+                <div id="tagline">
+                    <h1>For remembering daily tasks when real life gets busy</h1>
+                    <a href="#features">
+                        <button class="btnPlainYellow">
+                                <b>Learn More</b>
+                        </button>
+                    </a>
+                </div>  
+            </main>
+
+            <div id="about">
+                <div id="aboutSection">
+                  <div id="description">
+                        <h1>What Is It?</h1>
+                        <p> A list-making tool specifically designed around the daily tasks you find in everyday games.
+                            We know that people get busy throughout the day and sometimes forget to have fun when the
+                            real-life tasks are over. Gamer Dailies will help keep you on track so you don't miss out.
+                            Need a space to list everything you need to do in a single day of Stardew Valley? Need a daily 
+                            reminder so you don't lose your login streak? Or maybe you just need a dedicated space to plan 
+                            out your next Minecraft project. Whatever you need, Gamer Dailies will be there to help.
+                        </p>
+                        <a href="#features">
+                            <button class="btnPlainYellow">
+                                <b>Learn More</b>
+                            </button>
+                        </a>
+                    </div>  
+                </div>
+            </div>
+
+            <div id="features">
+                <h1>Our Main Features</h1>
+                <div id="featureList">
+                    <!-- all of the data for the features will be pulled from the JSON database -->
+                </div>
+                <h1 class="titleText">Additional Features</h1>
+                <div id="additionalFeatures" style="height: auto;">
+                    <!-- all of the data for the features will be pulled from the JSON database -->
+                </div>
+            </div>
+
+            <div id="install">
+                <h1 class="titleText">Install Now!</h1>
+                <div id="installDescription">
+                    <h3 class="installDesc">Choose from one of our three package options 
+                        and install Gamer Dailies on your device today!</h3>
+                </div>
+                <div id="installOptions">
+                   <!-- all of the data for the install options will be pulled from the JSON database -->
+
+                   <!-- The install buttons will have no function. In the future, they will take the user to
+                   another page with package details and descriptions -->
+                </div>
+            </div>
+
+            <footer>
+                <h3>&copy;2026 Shark Studios</h3>
+                <h3>Email us at: SharkStudios@example.com</h3>
+            </footer>
+        </section>
+    <script src="/public/assets/script.js"></script>
+</body>
+</html>

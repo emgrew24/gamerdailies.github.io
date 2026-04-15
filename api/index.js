@@ -41,7 +41,7 @@ const server = http.createServer ((req, res)=>{
     // Main landing page
     if(req.url === '/' || req.url === ''){
         fs.readFile( 
-            path.join(process.cwd(), 'index.html'),
+            path.join(process.cwd(), 'public', 'index.html'),  // Now routes to the new location
                 (err, content)=>{
                     if(err){
                         res.writeHead(500, {'Content-Type': 'text/html'});

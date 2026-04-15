@@ -1,8 +1,12 @@
 # Hides the env file
 .env
 
-# Ignores the extras file
-extras/
-
 # Ignore the database file (kept as a backup)
-db.json
+public/assets/db.json
+
+# Hide the stupid node_modules and package json files
+node_modules/
+
+package-lock.json
+
+package.json
