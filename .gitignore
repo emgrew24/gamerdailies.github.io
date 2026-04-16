@@ -12,4 +12,4 @@ public/assets/db.json
 # package.json
 
 # Hide the Vercel config file
-vercel.json
+# vercel.json
