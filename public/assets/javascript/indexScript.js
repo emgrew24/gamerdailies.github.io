@@ -6,11 +6,11 @@ async function getFeatureList(){
     try{
         const mainFeatureData = await fetch('/api')
         .then(res => res.json())
-        .then(service => {
+        .then(services => {
             const feature_list = document.getElementById('featureList');
 
             // Filter for just the basic package items and display those only
-            const packageFilter = service.filter(s => s.package_type === "Basic Package")
+            const packageFilter = services.filter(s => s.package_type === "Basic Package")
             // Add each element
             packageFilter.forEach(service => {
                 const feature = document.createElement('div');
@@ -70,11 +70,11 @@ async function getAdditionalFeatures(){
     try{
         const additionalFeatureData = await fetch('/api')
         .then(res => res.json())
-        .then(service => {
+        .then(services => {
             const additional_features = document.getElementById('additionalFeatures');
 
             // Filter for everything but the basic package items and display those only
-            const packageFilterExclude = service.filter(s => s.package_type !== "Basic Package")
+            const packageFilterExclude = services.filter(s => s.package_type !== "Basic Package")
             // Add each element
             packageFilterExclude.forEach(service =>{
 

@@ -3,13 +3,3 @@
 
 # Ignore the database file (kept as a backup)
 public/assets/db.json
-
-# Hide the stupid node_modules and package json files
-# node_modules/
-
-# package-lock.json
-
-# package.json
-
-# Hide the Vercel config file
-# vercel.json

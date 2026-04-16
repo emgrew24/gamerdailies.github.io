@@ -3,9 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- place for css -->
     <title>Admin</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/gamer-dailies-logo.png">
+
+    <!-- Linking the font Outfit from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <section id="adminPage">
+
+        <header>
+            <nav>
+                <div id="navContainer">
+                    <div id="navBrandName">
+                        <img src="/public/assets/images/gamer-dailies-logo.png" alt="gamer-dailies-logo" id="brandImage">
+                        <h1>Gamer Dailies</h1>
+                    </div>
+                    <div id="navButton">
+                        <button class="btnPlainYellow" id="logoutBtn"> <strong>Logout</strong> </button>
+                    </div>
+                </div> 
+            </nav>
+        </header>
+
+        <!-- have some sort of welcome admin title thing here -->
+
+        <div id="addNew">
+            <!-- put in the input for adding a new feature to the database
+            should add the id num, the title, short description, extended description,
+            package type (dropdown), price, and the optional product image link and image alt text -->
+
+            
+            <!--   Example item in database
+            id:  1
+            service_title: "Single List"
+            service_description_short: "Create a single list to store all of your tasks in one place"
+            service_description_extended: "The perfect entry point for any gamer. Keep all your objectives in one…"
+            package_type: "Basic Package"
+            price: 1
+            product_image: "https://emgrew24.github.io/gamerdailies.github.io/public/assets/images…"
+            image_alt: "notebook-with-list" -->
+
+
+        </div>
+
+        <div id="updateExisting">
+            <!-- can update an existing item in the database
+
+            need the _id (mongodb id, to actually find the data item), 
+            and everything else in the add new section -->
+
+        </div>
+
+        <div id="deleteItem">
+            <!-- can delete an existing item in the database
+
+            need the _id (mongodb id), title, and package type -->
+
+
+        </div>
+
+        <div id="showAll">
+            <!-- display all items in the database in json format
+            (maybe make it look a little nicer but regardless
+            it needs to show all pieces of data)
+
+            only need a button to activate -->
+
+        </div>
+
+        <footer>
+            <h3>&copy;2026 Shark Studios</h3>
+        </footer>
+
+    </section>
     
 </body>
 </html>
