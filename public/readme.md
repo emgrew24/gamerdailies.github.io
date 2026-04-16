@@ -15,3 +15,8 @@ The program is being hosted on Vercel (through the github repo)
 
 
 Uses NodeJS and is attached to a MongoDB database
+
+
+# Adding new folders to the project
+Any new folders that are used need to be added to the vercel.json so that Vercel 
+will actually see them and use them in deployment
