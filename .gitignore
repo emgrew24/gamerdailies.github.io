@@ -5,11 +5,11 @@
 public/assets/db.json
 
 # Hide the stupid node_modules and package json files
-node_modules/
+# node_modules/
 
-package-lock.json
+# package-lock.json
 
-package.json
+# package.json
 
 # Hide the Vercel config file
 vercel.json
