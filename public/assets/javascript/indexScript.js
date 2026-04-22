@@ -198,6 +198,11 @@ getAdditionalFeatures();
 getPackageDetails();
 
 
+// When the user clicks the login button they get redirected to the login screen
+document.getElementById('loginBtn').addEventListener('click', ()=>{
+    window.location.href = '/login'
+})
+
 
 // Reused code from the responsive menu demo to make 
 // the hamburger menu functional

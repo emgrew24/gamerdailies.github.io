@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- place for css -->
+    <link rel="stylesheet" href="/public/assets/css/loginStyles.css">
     <title>Login</title>
     <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/gamer-dailies-logo.png">
 
@@ -30,11 +30,15 @@
         </header>
 
         <main>
+            <h1>Login</h1>
+            <div id="loginSection">
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="password" placeholder="Password">
 
-            <!-- this will take up the whole page basically -->
+                <button id="loginBtn" class="btnPlainGreen">Log In</button>
+                <p id="errorMsg"></p>
 
-            <!-- this is where the login panel will be (itll be nested in a div or something) -->
-
+            </div>
         </main>
 
         <footer>

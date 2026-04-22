@@ -1,0 +1,155 @@
+:root{
+    --main-padding: 8px;
+    --main-radius: 5px;
+    --fill-screen-height: 80vh;
+    --partial-fill-height: 60vh;
+    --option-height: 40vh;
+
+    --section-width: 150vh;
+
+    /*  main colors */
+
+    /* Green */
+    --pale-green: #E0FFCD;
+    --light-green: #BCEF9C;
+    --green: #9FE870;
+    --bright-green: #6DDC25;
+    --dark-green: #376A15;
+    --dark-green-text: #1C3709;
+
+    /* Yellow */
+    --pale-yellow: #FBFFBB;
+    --light-yellow: #F8FD89;
+    --yellow: #FFEA64;
+    --bright-yellow: #FFE228;
+    --dark-yellow: #7E6F0B;
+    --dark-yellow-text: #423904;
+
+    /* Orange */
+    --pale-orange: #FFE894;
+    --light-orange: #FFC342;
+    --orange: #FFAE17;
+    --bright-orange: #EA9902;
+    --dark-orange: #7D560B;
+    --dark-orange-text: #483004;
+
+}
+
+body{
+    font-family: "Outfit", "Times New Roman";
+
+    /* fixes white border issue */
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+
+
+
+#brandImage{
+    width: 60px;
+    height: 60px;
+}
+
+
+
+
+
+
+
+
+button{
+    border-radius: 10px;
+    border-width: 3px;
+    border-style: solid;
+    text-align: center;
+    font-size: 20px;
+}
+
+
+.btnPlainGreen{
+    background-color: var(--bright-green);
+    border-color: var(--bright-green);
+    color: var(--dark-green-text);
+    height: 60px;
+    width: 150px;
+
+    font-size: 25px;
+}
+
+.btnPlainGreen:hover{
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.btnPlainDarkGreen{
+    background-color: var(--dark-green);
+    border-color: var(--dark-green);
+    color: var(--bright-green);
+    height: 60px;
+    width: 150px;
+
+    font-size: 25px;
+}
+
+.btnPlainDarkGreen:hover{
+    background-color: var(--dark-green-text);
+    border-color: var(--dark-green-text);
+}
+
+.btnPlainYellow{
+    background-color: var(--bright-yellow);
+    border-color: var(--bright-yellow);
+    color: var(--dark-yellow-text);
+    height: 60px;
+    width: 160px;
+
+    font-size: 25px;
+}
+
+.btnPlainYellow:hover{
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.btnPlainOrange{
+    background-color: var(--bright-orange);
+    border-color: var(--bright-orange);
+    color: var(--dark-orange-text);
+    height: 40px;
+
+    font-size: 15px;
+}
+
+.btnPlainOrange:hover{
+    background-color: var(--orange);
+    border-color: var(--orange);
+}
+
+.btnAdditionalFeatures{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: auto;
+
+    font-size: 15px;
+}
+
+.installBtn{
+    height: auto;
+    width: auto;
+
+    padding: 3% 4%;
+
+    border-color: var(--dark-orange-text);
+    font-size: 20px;
+}
+
+
+
+.visible{
+    display: flex !important;
+}
