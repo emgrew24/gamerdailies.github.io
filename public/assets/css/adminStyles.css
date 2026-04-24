@@ -33,6 +33,9 @@
     --dark-orange: #7D560B;
     --dark-orange-text: #483004;
 
+    /* Misc */
+    --ivory-white: #FEFDEE;
+    --error-red: #F43131;
 }
 
 body{
@@ -42,8 +45,69 @@ body{
     margin: 0;
     padding: 0;
 }
+ 
+/* Grid container for the main structure */
+#adminPage{
+    display: grid;
+    height: 100vh;
 
+    grid-template-columns: 0.8fr 1.2fr;
+    grid-template-rows: 0.5fr 1.5fr 0.5fr 1.5fr 1.5fr 0.5fr;
 
+    grid-template-areas:
+    "header header"
+    "banner banner"
+    "addNew showAll"
+    "update showAll"
+    "delete showAll"
+    "footer footer"
+    ;
+
+    background-color: var(--ivory-white);
+}
+
+header{
+    grid-area: header;
+}
+
+nav{
+    background-color: var(--dark-green-text);
+    padding: var(--main-padding);
+}
+
+#adminWelcome{
+    grid-area: banner;
+}
+
+#addNew{
+    grid-area: addNew;
+}
+
+#updateExisting{
+    grid-area: update;
+}
+
+#deleteProduct{
+    grid-area: delete;
+}
+
+#showAll{
+    grid-area: showAll;
+}
+
+footer{
+    grid-area: footer;
+
+    color: var(--pale-yellow);
+    background-color: var(--dark-yellow);
+    padding: var(--main-padding);
+    gap: 2rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 
 
 #brandImage{

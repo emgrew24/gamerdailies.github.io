@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/assets/css/adminStyles.css">
-    <title>Admin</title>
+    <title>Admin - Gamer Dailies</title>
     <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/gamer-dailies-logo.png">
 
     <!-- Linking the font Outfit from Google Fonts -->
@@ -100,14 +100,6 @@
                 <input type="number" id="deleteDatabaseID" placeholder="Database ID (required)"> <br>
                 <input type="text" id="deleteTitle" placeholder="Product Title"> <br>
 
-                <label for="deletePackageType">Package Type: </label>
-                <select id="deletePackageType">
-                    <option value="Basic Package">Basic Package</option>
-                    <option value="Quality Of Life Package">Quality Of Life Package</option>
-                    <option value="Deluxe Package">Deluxe Package</option>
-                </select>
-
-                <br><br>
                 <button id="deleteBtn">Delete Product</button>
                 <p id="deleteMessage"></p>
             </form>
@@ -116,7 +108,7 @@
         <div id="showAll">
             <!-- Display all products in the database (including all information) -->
             <h2>Show All Product Data</h2>
-            <button id="showAllBtn">Show All</button>
+            <button id="fetchBtn">Show All</button>
 
             <div id="allProductData">
                 <!-- All data will be pulled from the MongoDB database -->

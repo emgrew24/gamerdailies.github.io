@@ -33,6 +33,9 @@
     --dark-orange: #7D560B;
     --dark-orange-text: #483004;
 
+    /* Misc */
+    --ivory-white: #FEFDEE;
+    --error-red: #F43131;
 }
 
 body{

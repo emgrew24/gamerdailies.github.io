@@ -33,6 +33,9 @@
     --dark-orange: #7D560B;
     --dark-orange-text: #483004;
 
+    /* Misc */
+    --ivory-white: #FEFDEE;
+    --error-red: #F43131;
 }
 
 body{
@@ -43,8 +46,49 @@ body{
     padding: 0;
 }
 
+/* Grid container for the main structure */
+#loginPage{
+    display: grid;
+    height: 100vh;
 
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 2fr 0.5fr;
 
+    grid-template-areas:
+    "header"
+    "main"
+    "footer"
+    ;
+
+    background-color: var(--ivory-white);
+}
+
+header{
+    grid-area: header;
+}
+
+nav{
+    background-color: var(--dark-green-text);
+    padding: var(--main-padding);
+}
+
+main{
+    grid-area: main;
+}
+
+footer{
+    grid-area: footer;
+
+    color: var(--pale-yellow);
+    background-color: var(--dark-yellow);
+    padding: var(--main-padding);
+    gap: 2rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 
 
 
