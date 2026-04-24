@@ -191,20 +191,20 @@ document.getElementById('fetchBtn').addEventListener('click', () => {
         products.forEach(service => {
             html += `<li>
                 <strong>${service.service_title}</strong>
-                — Product ID: ${service.id}
                 — <small>_id: ${service._id}</small>
-                — Package: ${service.package_type}
-                — Price: ${service.price}
-                — Image Link: ${service.product_image ? '' + service.product_image + '' : 'No Image'}
-                — Image Alt: ${service.product_image ? '' + service.imageAlt + '' : 'No Image'}
-                — Short Description: ${service.service_description_short}
-                — Extended Description: ${service.service_description_extended}
+                <li> Product ID: ${service.id} </li>
+                <li> Package: ${service.package_type} </li>
+                <li> Price: ${service.price} </li>
+                <li> Image Link: ${service.product_image ? '' + service.product_image + '' : 'No Image'} </li>
+                <li> Image Alt: ${service.product_image ? '' + service.imageAlt + '' : 'No Image'} </li>
+                <li> Short Description: ${service.service_description_short} </li>
+                <li> Extended Description: ${service.service_description_extended} </li>
             </li>`;
         });
         html += '</ul>';
         container.innerHTML = html;
     })
     .catch(() => {
-        document.getElementById('books').innerHTML = '<p>Error fetching products.</p>';
+        document.getElementById('allProductData').innerHTML = '<p>Error fetching products.</p>';
     });
 });
