@@ -253,6 +253,30 @@ const server = http.createServer (async (req, res)=>{
         return;
     }
 
+    // authentication was here
+
+    // === API Routes ===================================================
+
+    // GET all product data -------------------------------------------
+    if (pathname === '/api' && req.method === 'GET'){
+        console.log("[API] GET all product data");
+        productData
+        .find({})
+        .toArray()
+        .then((results) => {
+            console.log(`[API] Found ${results.length} products`);
+            sendJSON(res, 200, results);
+        }
+       ).catch(err => {
+            console.log("[API] ERROR fetching products:", err.message);
+            sendJSON(res, 500, { error: "Failed to fetch products" });
+       });
+       return;
+    }
+
+    // Must have authentication after the GET route so database data can 
+    // still be accessed on the main page (without a session!)
+
     // Authentication -------------------------------------------------
     // --- Everything below requires login ----------------------------
 
@@ -276,25 +300,7 @@ const server = http.createServer (async (req, res)=>{
     }
 
 
-    // === API Routes ===================================================
-
-    // GET all product data -------------------------------------------
-    if (pathname === '/api' && req.method === 'GET'){
-        console.log("[API] GET all product data");
-        productData
-        .find({})
-        .toArray()
-        .then((results) => {
-            console.log(`[API] Found ${results.length} products`);
-            sendJSON(res, 200, results);
-        }
-       ).catch(err => {
-            console.log("[API] ERROR fetching products:", err.message);
-            sendJSON(res, 500, { error: "Failed to fetch products" });
-       });
-       return;
-    }
-
+    // Back to API routes ----------
 
     // POST new product -------------------------------------------------
     if (pathname === "/api" && req.method === "POST") {
