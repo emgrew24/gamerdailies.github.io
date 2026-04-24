@@ -248,7 +248,7 @@ const server = http.createServer (async (req, res)=>{
         console.log("[ROUTE] Logout");
         if (sessionId) destroySession(sessionId);
         clearSessionCookie(res);
-        res.writeHead(302, { Location: "/" });
+        res.writeHead(302, { Location: "/login" });
         res.end();
         return;
     }

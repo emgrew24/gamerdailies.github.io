@@ -21,7 +21,7 @@ document.getElementById('chkAddImage').addEventListener('click', ()=>{
 
 // Take the user back to the login page if they logout
 document.getElementById('logoutBtn').addEventListener('click', ()=>{
-    window.location.href = '/login'
+    window.location.href = '/logout'
 })
 
 // POST - Add a product
