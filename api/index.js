@@ -169,18 +169,6 @@ const server = http.createServer (async (req, res)=>{
 
     // Main landing page
     if(pathname === '/' || pathname === ''){
-        // fs.readFile( 
-        //     path.join(process.cwd(), 'public', 'index.html'),
-        //         (err, content)=>{
-        //             if(err){
-        //                 res.writeHead(500, {'Content-Type': 'text/html'});
-        //                 res.end("<h1> Error loading page</h1>");
-        //                 return
-        //             }
-
-        //             res.writeHead(200,{'Content-Type': 'text/html'});
-        //             res.end(content);
-        //         });
         console.log("[ROUTE] Serving main page");
         serveFile(res, path.join(process.cwd(), "public", "index.html"), 'text/html');
         return;

@@ -189,16 +189,18 @@ document.getElementById('fetchBtn').addEventListener('click', () => {
         }
         let html = '<ul>';
         products.forEach(service => {
-            html += `<li>
+            html += `<li class="productData">
                 <strong>${service.service_title}</strong>
                 — <small>_id: ${service._id}</small>
-                <li> Product ID: ${service.id} </li>
-                <li> Package: ${service.package_type} </li>
-                <li> Price: ${service.price} </li>
-                <li> Image Link: ${service.product_image ? '' + service.product_image + '' : 'No Image'} </li>
-                <li> Image Alt: ${service.product_image ? '' + service.imageAlt + '' : 'No Image'} </li>
-                <li> Short Description: ${service.service_description_short} </li>
-                <li> Extended Description: ${service.service_description_extended} </li>
+                <ul>
+                    <li> Product ID: ${service.id} </li>
+                    <li> Package: ${service.package_type} </li>
+                    <li> Price: ${service.price} </li>
+                    <li> Image Link: ${service.product_image ? '' + service.product_image + '' : 'No Image'} </li>
+                    <li> Image Alt: ${service.product_image ? '' + service.imageAlt + '' : 'No Image'} </li>
+                    <li> Short Description: ${service.service_description_short} </li>
+                    <li> Extended Description: ${service.service_description_extended} </li>
+                </ul>
             </li>`;
         });
         html += '</ul>';
