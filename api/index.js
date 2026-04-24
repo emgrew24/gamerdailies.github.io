@@ -162,32 +162,38 @@ const server = http.createServer (async (req, res)=>{
     const sessionId = cookies.sid;
     const session = getSession(sessionId);
 
-    if (session) {
-        console.log(`[AUTH] Valid session for "${session.username}"`);
-    } else {
-        console.log("[AUTH] No valid session");
-    }
+    // session check was here
 
     // --------------------------------------------------------------
 
 
     // Main landing page
     if(pathname === '/' || pathname === ''){
-        fs.readFile( 
-            path.join(process.cwd(), 'public', 'index.html'),
-                (err, content)=>{
-                    if(err){
-                        res.writeHead(500, {'Content-Type': 'text/html'});
-                        res.end("<h1> Error loading page</h1>");
-                        return
-                    }
+        // fs.readFile( 
+        //     path.join(process.cwd(), 'public', 'index.html'),
+        //         (err, content)=>{
+        //             if(err){
+        //                 res.writeHead(500, {'Content-Type': 'text/html'});
+        //                 res.end("<h1> Error loading page</h1>");
+        //                 return
+        //             }
 
-                    res.writeHead(200,{'Content-Type': 'text/html'});
-                    res.end(content);
-                });
+        //             res.writeHead(200,{'Content-Type': 'text/html'});
+        //             res.end(content);
+        //         });
+        console.log("[ROUTE] Serving main page");
+        serveFile(res, path.join(process.cwd(), "public", "index.html"), 'text/html');
+        return;
     }
 
     // --- (provided by Dr. Upadhayay) ------------------------------
+
+    // Check session AFTER loading the main page
+    if (session) {
+        console.log(`[AUTH] Valid session for "${session.username}"`);
+    } else {
+        console.log("[AUTH] No valid session");
+    }
 
     // The login page -----------------------------------------------
     if (pathname === "/login" && req.method === "GET") {
@@ -220,12 +226,8 @@ const server = http.createServer (async (req, res)=>{
         console.log(`[LOGIN] Trying username="${username}"`);
 
         // See if the user exists in the database
-        const user = userData.find(
-            {
-                username: username,
-                password: password
-            }
-        )
+        const user = await userData
+        .findOne({username: username, password: password})
 
         if (!user) {
             console.log(`[LOGIN] FAILED for username="${username}"`);
