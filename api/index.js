@@ -143,253 +143,259 @@ async function connectDB(){
 
 }
 
-// Fires off the connection to the database
-await connectDB()
+async function main(){
+  
+    // Fires off the connection to the database
+    await connectDB()
+
+    // === Creating the server =================================================
+
+    const server = http.createServer (async (req, res)=>{
+
+        // --- (provided by Dr. Upadhayay) ------------------------------
+
+        const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
+        const pathname = parsedUrl.pathname;
+
+        console.log(`\n[REQ] ${req.method} ${pathname}`);
+
+        // Parse cookies on every request
+        const cookies = parseCookies(req);
+        const sessionId = cookies.sid;
+        const session = getSession(sessionId);
+
+        // session check was here
+
+        // --------------------------------------------------------------
 
 
-// === Creating the server =================================================
+        // Main landing page
+        if(pathname === '/' || pathname === ''){
+            console.log("[ROUTE] Serving main page");
+            serveFile(res, path.join(process.cwd(), "public", "index.html"), 'text/html');
+            return;
+        }
 
-const server = http.createServer (async (req, res)=>{
+        // --- (provided by Dr. Upadhayay) ------------------------------
 
-    // --- (provided by Dr. Upadhayay) ------------------------------
-
-    const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
-    const pathname = parsedUrl.pathname;
-
-    console.log(`\n[REQ] ${req.method} ${pathname}`);
-
-    // Parse cookies on every request
-    const cookies = parseCookies(req);
-    const sessionId = cookies.sid;
-    const session = getSession(sessionId);
-
-    // session check was here
-
-    // --------------------------------------------------------------
-
-
-    // Main landing page
-    if(pathname === '/' || pathname === ''){
-        console.log("[ROUTE] Serving main page");
-        serveFile(res, path.join(process.cwd(), "public", "index.html"), 'text/html');
-        return;
-    }
-
-    // --- (provided by Dr. Upadhayay) ------------------------------
-
-    // Check session AFTER loading the main page
-    if (session) {
-        console.log(`[AUTH] Valid session for "${session.username}"`);
-    } else {
-        console.log("[AUTH] No valid session");
-    }
-
-    // The login page -----------------------------------------------
-    if (pathname === "/login" && req.method === "GET") {
-        console.log("[ROUTE] Serving login page");
-        // If already logged in, redirect to /admin
+        // Check session AFTER loading the main page
         if (session) {
-            console.log("[ROUTE] Already logged in, redirecting to /admin");
-            res.writeHead(302, { Location: "/admin" });
+            console.log(`[AUTH] Valid session for "${session.username}"`);
+        } else {
+            console.log("[AUTH] No valid session");
+        }
+
+        // The login page -----------------------------------------------
+        if (pathname === "/login" && req.method === "GET") {
+            console.log("[ROUTE] Serving login page");
+            // If already logged in, redirect to /admin
+            if (session) {
+                console.log("[ROUTE] Already logged in, redirecting to /admin");
+                res.writeHead(302, { Location: "/admin" });
+                res.end();
+                return;
+            }
+            serveFile(res, path.join(process.cwd(), "public", "login.html"), "text/html");
+            return;
+        }
+
+        // The login API ------------------------------------------------
+        if (pathname === "/login" && req.method === "POST") {
+            console.log("[ROUTE] Login attempt...");
+            const body = await readBody(req);
+            let parsed;
+            try {
+                parsed = JSON.parse(body);
+            } catch {
+                console.log("[LOGIN] Bad JSON in request body");
+                sendJSON(res, 400, { error: "Invalid JSON" });
+                return;
+            }
+
+            const { username, password } = parsed;
+            console.log(`[LOGIN] Trying username="${username}"`);
+
+            // See if the user exists in the database
+            const user = await userData
+            .findOne({username: username, password: password})
+
+            if (!user) {
+                console.log(`[LOGIN] FAILED for username="${username}"`);
+                sendJSON(res, 401, { error: "Invalid username or password" });
+                return;
+            }
+
+            console.log(`[LOGIN] SUCCESS for username="${username}"`);
+            const newSessionId = createSession(user.username);
+            setSessionCookie(res, newSessionId);
+            sendJSON(res, 200, { success: true, username: user.username });
+            return;
+        }
+
+
+        // Logout ---------------------------------------------------------
+        if (pathname === "/logout") {
+            console.log("[ROUTE] Logout");
+            if (sessionId) destroySession(sessionId);
+            clearSessionCookie(res);
+            res.writeHead(302, { Location: "/login" });
             res.end();
             return;
         }
-        serveFile(res, path.join(process.cwd(), "public", "login.html"), "text/html");
-        return;
-    }
 
-    // The login API ------------------------------------------------
-    if (pathname === "/login" && req.method === "POST") {
-        console.log("[ROUTE] Login attempt...");
-        const body = await readBody(req);
-        let parsed;
-        try {
-            parsed = JSON.parse(body);
-        } catch {
-            console.log("[LOGIN] Bad JSON in request body");
-            sendJSON(res, 400, { error: "Invalid JSON" });
+        // authentication was here
+
+        // === API Routes ===================================================
+
+        // GET all product data -------------------------------------------
+        if (pathname === '/api' && req.method === 'GET'){
+            console.log("[API] GET all product data");
+            productData
+            .find({})
+            .toArray()
+            .then((results) => {
+                console.log(`[API] Found ${results.length} products`);
+                sendJSON(res, 200, results);
+            }
+        ).catch(err => {
+                console.log("[API] ERROR fetching products:", err.message);
+                sendJSON(res, 500, { error: "Failed to fetch products" });
+        });
+        return;
+        }
+
+        // Must have authentication after the GET route so database data can 
+        // still be accessed on the main page (without a session!)
+
+        // Authentication -------------------------------------------------
+        // --- Everything below requires login ----------------------------
+
+        if (!session) {
+            if (pathname.startsWith("/api")) {
+                console.log("[AUTH] Blocked API request - no session");
+                sendJSON(res, 401, { error: "Unauthorized. Please log in." });
+                return;
+            }
+            console.log("[AUTH] Blocked page request - redirecting to /login");
+            res.writeHead(302, { Location: "/login" });
+            res.end();
             return;
         }
 
-        const { username, password } = parsed;
-        console.log(`[LOGIN] Trying username="${username}"`);
-
-        // See if the user exists in the database
-        const user = await userData
-        .findOne({username: username, password: password})
-
-        if (!user) {
-            console.log(`[LOGIN] FAILED for username="${username}"`);
-            sendJSON(res, 401, { error: "Invalid username or password" });
+        // Admin page -----------------------------------------------------
+        if (pathname === "/admin" && req.method === "GET") {
+            console.log("[ROUTE] Serving admin page (admin.html)");
+            serveFile(res, path.join(process.cwd(), "public", "admin.html"), "text/html");
             return;
         }
 
-        console.log(`[LOGIN] SUCCESS for username="${username}"`);
-        const newSessionId = createSession(user.username);
-        setSessionCookie(res, newSessionId);
-        sendJSON(res, 200, { success: true, username: user.username });
-        return;
-    }
 
+        // Back to API routes ----------
 
-    // Logout ---------------------------------------------------------
-    if (pathname === "/logout") {
-        console.log("[ROUTE] Logout");
-        if (sessionId) destroySession(sessionId);
-        clearSessionCookie(res);
-        res.writeHead(302, { Location: "/login" });
-        res.end();
-        return;
-    }
-
-    // authentication was here
-
-    // === API Routes ===================================================
-
-    // GET all product data -------------------------------------------
-    if (pathname === '/api' && req.method === 'GET'){
-        console.log("[API] GET all product data");
-        productData
-        .find({})
-        .toArray()
-        .then((results) => {
-            console.log(`[API] Found ${results.length} products`);
-            sendJSON(res, 200, results);
-        }
-       ).catch(err => {
-            console.log("[API] ERROR fetching products:", err.message);
-            sendJSON(res, 500, { error: "Failed to fetch products" });
-       });
-       return;
-    }
-
-    // Must have authentication after the GET route so database data can 
-    // still be accessed on the main page (without a session!)
-
-    // Authentication -------------------------------------------------
-    // --- Everything below requires login ----------------------------
-
-    if (!session) {
-        if (pathname.startsWith("/api")) {
-            console.log("[AUTH] Blocked API request - no session");
-            sendJSON(res, 401, { error: "Unauthorized. Please log in." });
-            return;
-        }
-        console.log("[AUTH] Blocked page request - redirecting to /login");
-        res.writeHead(302, { Location: "/login" });
-        res.end();
-        return;
-    }
-
-    // Admin page -----------------------------------------------------
-    if (pathname === "/admin" && req.method === "GET") {
-        console.log("[ROUTE] Serving admin page (admin.html)");
-        serveFile(res, path.join(process.cwd(), "public", "admin.html"), "text/html");
-        return;
-    }
-
-
-    // Back to API routes ----------
-
-    // POST new product -------------------------------------------------
-    if (pathname === "/api" && req.method === "POST") {
-        console.log("[API] POST new product");
-        const body = await readBody(req);
-        let service;
-        try {
-            service = JSON.parse(body);
-        } catch {
-            console.log("[API] Bad JSON in POST body");
-            sendJSON(res, 400, { error: "Invalid JSON" });
-            return;
-        }
-        service.addedBy = session.username;
-        console.log(`[API] Adding product: "${service.service_title}" (user: ${session.username})`);
-        productData
-            .insertOne(service)
-            .then((result) => {
-                console.log("[API] Product inserted:", result.insertedId);
-                sendJSON(res, 201, result);
-            })
-            .catch((err) => {
-                console.log("[API] ERROR inserting product:", err.message);
-                sendJSON(res, 500, { error: "Failed to add product" });
-            });
-        return;
-    }
-
-
-    // PUT update product -------------------------------------------------
-    if (pathname.startsWith("/api/") && req.method === "PUT") {
-        const _id = pathname.split("/")[2];
-
-        // Validate database _id before moving on
-        if(!ObjectId.isValid(_id)){
-            sendJSON(res, 400, {error: "Invalid product _id"});
+        // POST new product -------------------------------------------------
+        if (pathname === "/api" && req.method === "POST") {
+            console.log("[API] POST new product");
+            const body = await readBody(req);
+            let service;
+            try {
+                service = JSON.parse(body);
+            } catch {
+                console.log("[API] Bad JSON in POST body");
+                sendJSON(res, 400, { error: "Invalid JSON" });
+                return;
+            }
+            service.addedBy = session.username;
+            console.log(`[API] Adding product: "${service.service_title}" (user: ${session.username})`);
+            productData
+                .insertOne(service)
+                .then((result) => {
+                    console.log("[API] Product inserted:", result.insertedId);
+                    sendJSON(res, 201, result);
+                })
+                .catch((err) => {
+                    console.log("[API] ERROR inserting product:", err.message);
+                    sendJSON(res, 500, { error: "Failed to add product" });
+                });
             return;
         }
 
-        console.log(`[API] PUT update product id=${_id}`);
-        const body = await readBody(req);
-        let updates;
-        try {
-            updates = JSON.parse(body);
-        } catch {
-            console.log("[API] Bad JSON in PUT body");
-            sendJSON(res, 400, { error: "Invalid JSON" });
+
+        // PUT update product -------------------------------------------------
+        if (pathname.startsWith("/api/") && req.method === "PUT") {
+            const _id = pathname.split("/")[2];
+
+            // Validate database _id before moving on
+            if(!ObjectId.isValid(_id)){
+                sendJSON(res, 400, {error: "Invalid product _id"});
+                return;
+            }
+
+            console.log(`[API] PUT update product id=${_id}`);
+            const body = await readBody(req);
+            let updates;
+            try {
+                updates = JSON.parse(body);
+            } catch {
+                console.log("[API] Bad JSON in PUT body");
+                sendJSON(res, 400, { error: "Invalid JSON" });
+                return;
+            }
+            delete updates._id;
+            delete updates.id;
+            console.log("[API] Updates:", updates);
+
+            productData
+                .updateOne({ _id: new ObjectId(_id) }, { $set: updates })
+                .then((result) => {
+                    console.log(`[API] Updated: matchedCount=${result.matchedCount}, modifiedCount=${result.modifiedCount}`);
+                    sendJSON(res, 200, result);
+                })
+                .catch((err) => {
+                    console.log("[API] ERROR updating product:", err.message);
+                    sendJSON(res, 500, { error: "Failed to update product" });
+                });
             return;
         }
-        delete updates._id;
-        delete updates.id;
-        console.log("[API] Updates:", updates);
 
-        productData
-            .updateOne({ _id: new ObjectId(_id) }, { $set: updates })
-            .then((result) => {
-                console.log(`[API] Updated: matchedCount=${result.matchedCount}, modifiedCount=${result.modifiedCount}`);
-                sendJSON(res, 200, result);
-            })
-            .catch((err) => {
-                console.log("[API] ERROR updating product:", err.message);
-                sendJSON(res, 500, { error: "Failed to update product" });
-            });
-        return;
-    }
+        // DELETE a product ---------------------------------------------------
+        if (pathname.startsWith("/api/") && req.method === "DELETE") {
+            const _id = pathname.split("/")[2];
 
-    // DELETE a product ---------------------------------------------------
-     if (pathname.startsWith("/api/") && req.method === "DELETE") {
-        const _id = pathname.split("/")[2];
+            // Validate database _id before moving on
+            if(!ObjectId.isValid(_id)){
+                sendJSON(res, 400, {error: "Invalid product _id"});
+                return;
+            }
 
-        // Validate database _id before moving on
-        if(!ObjectId.isValid(_id)){
-            sendJSON(res, 400, {error: "Invalid product _id"});
+            console.log(`[API] DELETE product id=${_id}`);
+
+            productData
+                .deleteOne({ _id: new ObjectId(_id) })
+                .then((result) => {
+                    console.log(`[API] Deleted: deletedCount=${result.deletedCount}`);
+                    sendJSON(res, 200, result);
+                })
+                .catch((err) => {
+                    console.log("[API] ERROR deleting product:", err.message);
+                    sendJSON(res, 500, { error: "Failed to delete product" });
+                });
             return;
         }
 
-        console.log(`[API] DELETE product id=${_id}`);
+        // 404 Error -----------------------------------------------------------
+        console.log(`[ROUTE] 404 - nothing matched for ${pathname}`);
+        res.writeHead(404, { "Content-Type": "text/html" });
+        res.end("<h1>404 nothing is here</h1>");
 
-        productData
-            .deleteOne({ _id: new ObjectId(_id) })
-            .then((result) => {
-                console.log(`[API] Deleted: deletedCount=${result.deletedCount}`);
-                sendJSON(res, 200, result);
-            })
-            .catch((err) => {
-                console.log("[API] ERROR deleting product:", err.message);
-                sendJSON(res, 500, { error: "Failed to delete product" });
-            });
-        return;
-    }
+        // --------------------------------------------------------------
 
-    // 404 Error -----------------------------------------------------------
-    console.log(`[ROUTE] 404 - nothing matched for ${pathname}`);
-    res.writeHead(404, { "Content-Type": "text/html" });
-    res.end("<h1>404 nothing is here</h1>");
+    }); 
 
-    // --------------------------------------------------------------
+}
 
-}); 
+main().catch(console.error);
+
 
 
 // Exporting the server for Vercel to grab it
-module.exports = server
+module.exports = main()
