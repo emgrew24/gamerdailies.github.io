@@ -31,87 +31,111 @@
 
         <div id="adminWelcome">
             <h1>Welcome Admin!</h1>
-            <h3>You will find controls to view all products, add new products, 
-                update existing products, and delete products. </h3>
+            <!-- <h3>You will find controls to view all products, add new products, 
+                update existing products, and delete products. </h3> -->
         </div>
 
         <div id="addNew">
-            <!-- Can add a new product to the database -->
-            <h2>Add New Product</h2>
-            <form id="addNewForm">
-                <input type="number" id="addIDNum" placeholder="ID"> <br>
-                <input type="text" id="addTitle" placeholder="Product Title"> <br>
-                <input type="text" id="addShortDesc" placeholder="Short Description"> <br>
-                <input type="text" id="addLongDesc" placeholder="Extended Description"> <br>
-                <input type="number" id="addPrice" placeholder="Price"> <br> <br>
+            <div id="addNewContainer" class="formContainer">
+                <!-- Can add a new product to the database -->
+                <div id="addProductTitle">
+                    <h2>Add New Product</h2> <hr>
+                </div>
                 
-                <label for="addPackageType">Package Type: </label>
-                <select id="addPackageType">
-                    <option value="Basic Package">Basic Package</option>
-                    <option value="Quality Of Life Package">Quality Of Life Package</option>
-                    <option value="Deluxe Package">Deluxe Package</option>
-                </select> <br> <br>
+                <form id="addNewForm">
+                    <input type="number" id="addIDNum" placeholder="ID"> <br>
+                    <input type="text" id="addTitle" placeholder="Product Title"> <br>
+                    <input type="text" id="addShortDesc" class="wideInputBox" placeholder="Short Description"> <br>
+                    <input type="text" id="addLongDesc" class="wideInputBox" placeholder="Extended Description"> <br>
+                    <input type="number" id="addPrice" placeholder="Price"> <br> <br>
+                    
+                    <label for="addPackageType">Package Type: </label>
+                    <select id="addPackageType" class="packageDropdown">
+                        <option value="Basic Package">Basic Package</option>
+                        <option value="Quality Of Life Package">Quality Of Life Package</option>
+                        <option value="Deluxe Package">Deluxe Package</option>
+                    </select> <br> <br>
 
-                <label for="chkAddImage">Add Product Image</label>
-                <input type="checkbox" id="chkAddImage" name="chkAddImage">
+                    <div class="checkBoxLeveling">
+                        <input type="checkbox" id="chkAddImage" name="chkAddImage">
+                        <label for="chkAddImage">Add Product Image</label> 
+                    </div>
+                    
 
-                <!-- The image options will be hidden unless the user has checked the box to add an image -->
-                <input type="text" id="addImage" style="display: none;" placeholder="Image Link">
-                <input type="text" id="addImageAlt" style="display: none;" placeholder="Image Alt Description">
+                    <!-- The image options will be hidden unless the user has checked the box to add an image -->
+                    <input type="text" id="addImage" style="display: none;" placeholder="Image Link">
+                    <input type="text" id="addImageAlt" style="display: none;" placeholder="Image Alt Description">
 
-                <br><br>
-                <button id="addBtn">Add New Product</button>
-                <p id="addMessage"></p>
-            </form>
+                    <br><br>
+                    <button id="addBtn" class="btnPlainYellow formBtn"><strong>Add New</strong></button>
+                    <p id="addMessage"></p>
+                </form>
+            </div>
         </div>
 
         <div id="updateExisting">
-            <!-- Can update an existing product in the database -->
-            <h2>Update Product</h2>
-            <form id="updateForm">
-                <input type="text" id="updateDatabaseID" placeholder="Database ID (required)"> <br>
-                <input type="number" id="updateIDNum" placeholder="Product ID"> <br>
-                <input type="text" id="updateTitle" placeholder="Product Title"> <br>
-                <input type="text" id="updateShortDesc" placeholder="Short Description"> <br>
-                <input type="text" id="updateLongDesc" placeholder="Extended Description"> <br>
-                <input type="number" id="updatePrice" placeholder="Price"> <br> <br>
+            <div id="updateExistingContainer" class="formContainer">
+                <!-- Can update an existing product in the database -->
+                <div id="updateProductTitle">
+                    <h2>Update Product</h2> <hr>
+                </div>
                 
-                <label for="updatePackageType">Package Type: </label>
-                <select id="updatePackageType">
-                    <option value="">-- No Change</option>
-                    <option value="Basic Package">Basic Package</option>
-                    <option value="Quality Of Life Package">Quality Of Life Package</option>
-                    <option value="Deluxe Package">Deluxe Package</option>
-                </select> <br> <br>
-                
-                <input type="text" id="updateImage" placeholder="Image Link">
-                <input type="text" id="updateImageAlt" placeholder="Image Alt Description">
+                <form id="updateForm">
+                    <input type="text" id="updateDatabaseID" placeholder="Database ID (required)"> <br>
+                    <input type="number" id="updateIDNum" placeholder="Product ID"> <br>
+                    <input type="text" id="updateTitle" placeholder="Product Title"> <br>
+                    <input type="text" id="updateShortDesc" class="wideInputBox" placeholder="Short Description"> <br>
+                    <input type="text" id="updateLongDesc" class="wideInputBox" placeholder="Extended Description"> <br>
+                    <input type="number" id="updatePrice" placeholder="Price"> <br> <br>
+                    
+                    <label for="updatePackageType">Package Type: </label>
+                    <select id="updatePackageType" class="packageDropdown">
+                        <option value="">-- No Change</option>
+                        <option value="Basic Package">Basic Package</option>
+                        <option value="Quality Of Life Package">Quality Of Life Package</option>
+                        <option value="Deluxe Package">Deluxe Package</option>
+                    </select> <br> <br>
+                    
+                    <input type="text" id="updateImage" placeholder="Image Link"> <br>
+                    <input type="text" id="updateImageAlt" placeholder="Image Alt Description">
 
-                <br><br>
-                <button id="updateBtn">Update Product</button>
-                <p id="updateMessage"></p>
-            </form>
+                    <br><br>
+                    <button id="updateBtn" class="btnPlainGreen formBtn"> <strong>Update</strong></button>
+                    <p id="updateMessage"></p>
+                </form>
+            </div>
         </div>
 
         <div id="deleteProduct">
-            <!-- Can delete an existing product in the database -->
-            <h2>Delete A Product</h2>
-            <form id="deleteForm">
-                <input type="text" id="deleteDatabaseID" placeholder="Database ID (required)"> <br>
-                <input type="text" id="deleteTitle" placeholder="Product Title"> <br>
+            <div id="deleteProductContainer" class="formContainer">
+                <!-- Can delete an existing product in the database -->
+                <div id="deleteProductTitle">
+                    <h2>Delete Product</h2> <hr>
+                </div>
+                
+                <form id="deleteForm">
+                    <input type="text" id="deleteDatabaseID" placeholder="Database ID (required)"> <br>
+                    <input type="text" id="deleteTitle" placeholder="Product Title"> <br> <br>
 
-                <button id="deleteBtn">Delete Product</button>
-                <p id="deleteMessage"></p>
-            </form>
-        </div>
+                    <button id="deleteBtn" class="btnPlainOrange formBtn"><strong>Delete</strong></button>
+                    <p id="deleteMessage"></p>
+                </form>
+            </div>
+            </div>
+            
 
         <div id="showAll">
-            <!-- Display all products in the database (including all information) -->
-            <h2>Show All Product Data</h2>
-            <button id="fetchBtn">Show All</button>
+            <div id="showAllContainer">
+                <!-- Display all products in the database (including all information) -->
+                <div id="showAllTitle">
+                    <h2>Show All Product Data</h2> <hr>
+                </div>
+                
+                <button id="fetchBtn" class="btnPlainDarkGreen formBtn"><strong>Show All</strong></button>
 
-            <div id="allProductData">
-                <!-- All data will be pulled from the MongoDB database -->
+                <div id="allProductData">
+                    <!-- All data will be pulled from the MongoDB database -->
+                </div>
             </div>
         </div>
 

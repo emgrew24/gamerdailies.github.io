@@ -44,6 +44,8 @@ body{
     /* fixes white border issue */
     margin: 0;
     padding: 0;
+
+    background-color: var(--ivory-white);
 }
 
 /* Grid container for the main structure */
@@ -79,8 +81,8 @@ main{
 footer{
     grid-area: footer;
 
-    color: var(--pale-yellow);
-    background-color: var(--dark-yellow);
+    color: var(--dark-yellow-text);
+    background-color: var(--bright-yellow);
     padding: var(--main-padding);
     gap: 2rem;
 

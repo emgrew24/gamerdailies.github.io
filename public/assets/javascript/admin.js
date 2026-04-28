@@ -187,12 +187,12 @@ document.getElementById('fetchBtn').addEventListener('click', () => {
             container.innerHTML = '<p>No products found.</p>';
             return;
         }
-        let html = '<ul>';
+        let html = '<ul class="productList">';
         products.forEach(service => {
             html += `<li class="productData">
                 <strong>${service.service_title}</strong>
                 — <small>_id: ${service._id}</small>
-                <ul>
+                <ul class="dataSubCategory">
                     <li> Product ID: ${service.id} </li>
                     <li> Package: ${service.package_type} </li>
                     <li> Price: ${service.price} </li>
