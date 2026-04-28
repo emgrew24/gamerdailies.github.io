@@ -392,7 +392,7 @@ const server = http.createServer (async (req, res)=>{
 
 
 // Exporting the server for Vercel to grab it
-module.exports = await ((req, res) => {
+module.exports = async (req, res) => {
     await connectDB()
     return server(req, res)
-});
+};
