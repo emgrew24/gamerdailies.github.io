@@ -312,12 +312,13 @@ hr{
 
 
 .productList{
+    margin: 1% 0%;
     color: var(--dark-green-text);
     font-size: medium;
 
     display: flex;
     flex-direction: column;
-    height: auto;
+    width: auto;
 
 }
 
