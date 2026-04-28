@@ -191,15 +191,15 @@ document.getElementById('fetchBtn').addEventListener('click', () => {
         products.forEach(service => {
             html += `<li class="productData">
                 <strong>${service.service_title}</strong>
-                — <small>_id: ${service._id}</small>
+                — <small><strong>_id: ${service._id}</strong></small>
                 <ul class="dataSubCategory">
-                    <li> Product ID: ${service.id} </li>
-                    <li> Package: ${service.package_type} </li>
-                    <li> Price: ${service.price} </li>
-                    <li> Image Link: ${service.product_image ? '' + service.product_image + '' : 'No Image'} </li>
-                    <li> Image Alt: ${service.product_image ? '' + service.image_alt + '' : 'No Image'} </li>
-                    <li> Short Description: ${service.service_description_short} </li>
-                    <li> Extended Description: ${service.service_description_extended} </li>
+                    <li><strong>Product ID:</strong> ${service.id} </li>
+                    <li><strong>Package:</strong>  ${service.package_type} </li>
+                    <li><strong>Price:</strong>  ${service.price} </li>
+                    <li><strong>Image Link:</strong>  ${service.product_image ? '' + service.product_image + '' : 'No Image'} </li>
+                    <li><strong>Image Alt:</strong>  ${service.product_image ? '' + service.image_alt + '' : 'No Image'} </li>
+                    <li><strong>Short Description:</strong>  ${service.service_description_short} </li>
+                    <li><strong>Extended Description:</strong>  ${service.service_description_extended} </li>
                 </ul>
             </li>`;
         });

@@ -54,19 +54,28 @@ body{
     height: 100vh;
 
     grid-template-columns: 0.8fr 1.2fr;
-    grid-template-rows: 0.5fr 0.5fr 1.5fr 1.5fr 1.5fr 0.5fr;
+    grid-template-rows: auto auto auto;
+    /* 0.5fr 0.5fr 1.5fr 1.5fr 1.5fr 0.5fr */
+    /* auto auto auto auto 1fr auto */
 
     grid-template-areas:
     "header header"
     "banner banner"
-    "addNew showAll"
-    "update showAll"
-    "delete showAll"
+    "leftPanel showAll"
     "footer footer"
     ;
 
     background-color: var(--ivory-white);
 }
+
+#leftPanel{
+    grid-area: leftPanel;
+
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
 
 header{
     grid-area: header;
@@ -88,6 +97,7 @@ nav{
 
 #addNew{
     grid-area: addNew;
+    height: auto;
 
     padding: 2% 2%;
 
@@ -95,20 +105,22 @@ nav{
 
 #updateExisting{
     grid-area: update;
+    height: auto;
 
     padding: 0% 2%;
 }
 
 #deleteProduct{
     grid-area: delete;
+    height: auto;
 
     padding: 2% 2%;
 }
 
 #showAll{
     grid-area: showAll;
-
     height: auto;
+    
     padding: 2% 2%;
 
 }
@@ -293,16 +305,35 @@ hr{
 
 
 
+#allProductData{
+    display: flex;
+    align-items: flex-start;
+}
+
+
 .productList{
-    color: var(--light-green);
+    color: var(--dark-green-text);
     font-size: medium;
+
+    display: flex;
+    flex-direction: column;
+    height: auto;
+
 }
 
 
 .productData{
-    background-color: var(--dark-green);
+    margin: 2% 2%;
+    padding: 1% -2% 1% 0%;
+    background-color: var(--green);
+
+    border: 20px solid var(--green);
+    border-radius: 8px;
 }
 
+.dotStyle{
+    list-style-position: inside;
+}
 
 
 
