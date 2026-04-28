@@ -3,6 +3,7 @@ const path = require('path');
 const http = require('http');
 const crypto = require('crypto');
 const {MongoClient} = require('mongodb');
+const {ObjectId} = require('mongodb');
 require('dotenv').config();
 
 // Website link hosted on Vercel: https://gamer-dailies.vercel.app/
@@ -320,8 +321,15 @@ const server = http.createServer (async (req, res)=>{
 
     // PUT update product -------------------------------------------------
     if (pathname.startsWith("/api/") && req.method === "PUT") {
-        const id = pathname.split("/")[2];
-        console.log(`[API] PUT update product id=${id}`);
+        const _id = pathname.split("/")[2];
+
+        // Validate database _id before moving on
+        if(!ObjectId.isValid(_id)){
+            sendJSON(res, 400, {error: "Invalid product _id"});
+            return;
+        }
+
+        console.log(`[API] PUT update product id=${_id}`);
         const body = await readBody(req);
         let updates;
         try {
@@ -336,7 +344,7 @@ const server = http.createServer (async (req, res)=>{
         console.log("[API] Updates:", updates);
 
         productData
-            .updateOne({ _id: id }, { $set: updates })
+            .updateOne({ _id: new ObjectId(_id) }, { $set: updates })
             .then((result) => {
                 console.log(`[API] Updated: matchedCount=${result.matchedCount}, modifiedCount=${result.modifiedCount}`);
                 sendJSON(res, 200, result);
