@@ -143,6 +143,7 @@ async function connectDB(){
 
 }
 
+const server
 async function main(){
   
     // Fires off the connection to the database
@@ -150,7 +151,7 @@ async function main(){
 
     // === Creating the server =================================================
 
-    const server = http.createServer (async (req, res)=>{
+    server = http.createServer (async (req, res)=>{
 
         // --- (provided by Dr. Upadhayay) ------------------------------
 
@@ -398,4 +399,4 @@ main().catch(console.error);
 
 
 // Exporting the server for Vercel to grab it
-module.exports = main()
+module.exports = server
