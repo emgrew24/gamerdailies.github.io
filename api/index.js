@@ -143,9 +143,6 @@ async function connectDB(){
 
 }
 
-// Fires off the connection to the database
-connectDB()
-
 
 // === Creating the server =================================================
 
@@ -391,8 +388,12 @@ const server = http.createServer (async (req, res)=>{
 }); 
 
 
+
 // Exporting the server for Vercel to grab it
 module.exports = async (req, res) => {
-    await connectDB()
-    server
+    // Fire off the connection to the database
+    await connectDB();
+
+    // Initiate the creation of the server
+    server(req, res);
 };
