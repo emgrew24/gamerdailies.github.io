@@ -320,7 +320,7 @@ const server = http.createServer (async (req, res)=>{
 
     // PUT update product -------------------------------------------------
     if (pathname.startsWith("/api/") && req.method === "PUT") {
-        const id = Number(pathname.split("/")[2]);
+        const id = pathname.split("/")[2];
         console.log(`[API] PUT update product id=${id}`);
         const body = await readBody(req);
         let updates;
@@ -336,7 +336,7 @@ const server = http.createServer (async (req, res)=>{
         console.log("[API] Updates:", updates);
 
         productData
-            .updateOne({ id: id }, { $set: updates })
+            .updateOne({ _id: id }, { $set: updates })
             .then((result) => {
                 console.log(`[API] Updated: matchedCount=${result.matchedCount}, modifiedCount=${result.modifiedCount}`);
                 sendJSON(res, 200, result);
@@ -354,7 +354,7 @@ const server = http.createServer (async (req, res)=>{
         console.log(`[API] DELETE product id=${id}`);
 
         productData
-            .deleteOne({ id: id })
+            .deleteOne({ _id: id })
             .then((result) => {
                 console.log(`[API] Deleted: deletedCount=${result.deletedCount}`);
                 sendJSON(res, 200, result);

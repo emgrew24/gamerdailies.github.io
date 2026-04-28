@@ -108,7 +108,7 @@ document.getElementById('updateBtn').addEventListener('click', () => {
     if (title) updates.service_title = title;
     if (shortDesc) updates.service_description_short = shortDesc;
     if (longDesc) updates.service_description_extended = longDesc;
-    if (packageType !== '') updates.package_type = packageType;
+    if (packageType !== 'No Change') updates.package_type = packageType;
     if (price) updates.price = Number(price);
     if (imageLink) updates.product_image = imageLink;
     if (imageAlt) updates.image_alt = imageAlt;
@@ -143,7 +143,7 @@ document.getElementById('updateBtn').addEventListener('click', () => {
         document.getElementById('updateImageAlt').value = '';
     })
     .catch(() => {
-        document.getElementById('updateMessage').textContent = 'Error updating book.';
+        document.getElementById('updateMessage').textContent = 'Error updating product.';
     });
 });
 
