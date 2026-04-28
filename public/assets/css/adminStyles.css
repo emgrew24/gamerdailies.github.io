@@ -55,8 +55,6 @@ body{
 
     grid-template-columns: 0.8fr 1.2fr;
     grid-template-rows: auto auto auto;
-    /* 0.5fr 0.5fr 1.5fr 1.5fr 1.5fr 0.5fr */
-    /* auto auto auto auto 1fr auto */
 
     grid-template-areas:
     "header header"

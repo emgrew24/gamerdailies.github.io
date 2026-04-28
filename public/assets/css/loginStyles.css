@@ -54,7 +54,7 @@ body{
     height: 100vh;
 
     grid-template-columns: 1fr;
-    grid-template-rows: 0.5fr 2fr 0.5fr;
+    grid-template-rows: auto auto auto;
 
     grid-template-areas:
     "header"
@@ -76,6 +76,9 @@ nav{
 
 main{
     grid-area: main;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 footer{
@@ -94,14 +97,95 @@ footer{
 
 
 
+/* Grid area for nav bar */
+#navContainer{
+    display: grid;
+    gap: 5rem;
+    
+    grid-template-columns: 0.8fr, 1.2fr;
+    grid-template-rows: 0.8fr;
+
+    grid-template-areas: 
+    "brandName navButton"
+    ;
+
+}
+
+/* Flex styles for nav bar */
+#navBrandName{
+    grid-area: brandName;
+    gap: 1rem;
+
+    border-radius: var(--main-radius);
+    padding: var(--main-padding);
+    color: var(--light-green);
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
 
 #brandImage{
     width: 60px;
     height: 60px;
 }
 
+#navButton{
+    grid-area: navButton;
+    gap: 3rem;
+
+    border-radius: var(--main-radius);
+    padding: var(--main-padding);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
 
 
+
+#loginContainer{
+    margin: 4% 6%;
+    padding: 2% 4%;
+    background-color: var(--light-green);
+    color: var(--dark-green-text);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border: 5px solid var(--dark-green);
+    border-radius: 8px;
+
+}
+
+#loginSection{
+    margin-top: 8%;
+    padding: 4% 2%;
+}
+
+
+hr{
+    float: left;
+    border: 3px solid var(--dark-green-text);
+    border-radius: 3px;
+    width: 100%;
+}
+
+
+
+input{
+    width: 90%;
+    padding: 1% 1%;
+    margin: 5px;
+
+    border: 1px solid;
+    border-radius: 5px;
+
+    font-size: medium;
+
+}
 
 
 
@@ -175,22 +259,12 @@ button{
     border-color: var(--orange);
 }
 
-.btnAdditionalFeatures{
-    display: flex;
-    align-items: center;
-    height: 40px;
-    width: auto;
-
-    font-size: 15px;
-}
-
-.installBtn{
+#loginBtn{
     height: auto;
     width: auto;
 
-    padding: 3% 4%;
+    padding: 3% 3%;
 
-    border-color: var(--dark-orange-text);
     font-size: 20px;
 }
 
