@@ -144,7 +144,7 @@ async function connectDB(){
 }
 
 // Fires off the connection to the database
-connectDB()
+await connectDB()
 
 
 // === Creating the server =================================================
