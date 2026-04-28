@@ -358,11 +358,18 @@ const server = http.createServer (async (req, res)=>{
 
     // DELETE a product ---------------------------------------------------
      if (pathname.startsWith("/api/") && req.method === "DELETE") {
-        const id = Number(pathname.split("/")[2]);
-        console.log(`[API] DELETE product id=${id}`);
+        const _id = pathname.split("/")[2];
+
+        // Validate database _id before moving on
+        if(!ObjectId.isValid(_id)){
+            sendJSON(res, 400, {error: "Invalid product _id"});
+            return;
+        }
+
+        console.log(`[API] DELETE product id=${_id}`);
 
         productData
-            .deleteOne({ _id: id })
+            .deleteOne({ _id: new ObjectId(_id) })
             .then((result) => {
                 console.log(`[API] Deleted: deletedCount=${result.deletedCount}`);
                 sendJSON(res, 200, result);
