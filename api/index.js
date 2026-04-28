@@ -146,7 +146,7 @@ async function connectDB(){
 
 // === Creating the server =================================================
 
-const server = http.createServer (async (req, res)=>{
+const handler = async (req, res)=>{
 
     // --- (provided by Dr. Upadhayay) ------------------------------
 
@@ -385,7 +385,23 @@ const server = http.createServer (async (req, res)=>{
 
     // --------------------------------------------------------------
 
-}); 
+}; 
+
+
+const server = http.createServer(handler)
+
+
+// Check if program is being ran localy
+if(process.env.PROGRAM_STATE !== 'production'){
+    const PORT = process.env.PORT || 5555
+    connectDB()
+    .then(() => {
+    server.listen(PORT, () => {
+        console.log(`\n[SERVER] Running on port ${PORT}`);
+        console.log(`[SERVER] Open link at http://localhost:${PORT}`)
+    })
+    })
+}
 
 
 
@@ -395,5 +411,5 @@ module.exports = async (req, res) => {
     await connectDB();
 
     // Initiate the creation of the server
-    server(req, res);
+    handler(req, res);
 };
