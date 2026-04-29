@@ -391,17 +391,20 @@ const handler = async (req, res)=>{
 const server = http.createServer(handler)
 
 
-// Check if program is being ran localy
-if(process.env.PROGRAM_STATE !== 'production'){
-    const PORT = process.env.PORT || 5555
-    connectDB()
-    .then(() => {
-    server.listen(PORT, () => {
-        console.log(`\n[SERVER] Running on port ${PORT}`);
-        console.log(`[SERVER] Open link at http://localhost:${PORT}`)
-    })
-    })
-}
+// Check if program is being ran localy 
+// --- !! This part doesnt work and to be honest I dont
+// --- have the time/patience to make it work before the deadline so this will 
+// --- be a later date thing if I ever want to actually have this function
+// if(process.env.PROGRAM_STATE !== 'production'){
+//     const PORT = process.env.PORT || 5555
+//     connectDB()
+//     .then(() => {
+//     server.listen(PORT, () => {
+//         console.log(`\n[SERVER] Running on port ${PORT}`);
+//         console.log(`[SERVER] Open link at http://localhost:${PORT}`)
+//     })
+//     })
+// }
 
 
 
