@@ -4,7 +4,7 @@ const productSchema = mongoose.Schema(
     {
         // --- Product Content ------------------------
         id: {
-            type: Int32Array,
+            type: Number,
             required: [true, 'Please add an id number'],
         },
         service_title: {
@@ -24,7 +24,7 @@ const productSchema = mongoose.Schema(
             required: [true, 'Please select the package type'],
         },
         price: {
-            type: Int32Array,
+            type: Number,
             required: [true, 'Please add a price'],
         },
         product_image: {
