@@ -1,3 +1,52 @@
 <!-- this will be the registration page for new users -->
 <!-- Will eventually also add its own js and css files -->
- 
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Gamer Dailies</title>
+ </head>
+ <body>
+    <section id="registerPage">
+        <header>
+            <nav>
+                <div id="navContainer">
+                    <div id="navBrandName">
+                        <img src="/public/assets/images/gamer-dailies-logo.png" alt="gamer-dailies-logo" id="brandImage">
+                        <h1>Gamer Dailies</h1>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Register</h1>
+            <form id="registerForm">
+                <div>
+                <label>Name:</label><br>
+                <input type="text" id="name" required>
+                </div>
+                <br>
+                <!-- no email needed for registering -->
+                <div>
+                <label>Password:</label><br>
+                <input type="password" id="password" required>
+                </div>
+                <br>
+                <button type="submit">Register</button>
+            </form>
+
+            <p id="errorMsg" style="color:red;"></p>
+            <p id="successMsg" style="color:green;"></p>
+
+            <p>Already have an account? <a href="login.html">Login Here!</a></p>
+        </main>
+
+        <footer>
+            <h3>&copy;2026 Shark Studios</h3>
+        </footer>
+    </section>
+    <script src="js_frontend/auth.js"></script>
+ </body>
+ </html>

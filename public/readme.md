@@ -44,6 +44,11 @@ so it will look entierly different than before
 
 vercel is stupid and i dont like using it... but whatever im in too deep now
 
+# Using ExpressJS ---
+Here is a good link to Vercel's documentation about using ExpressJS
+- https://vercel.com/docs/frameworks/backend/express
+
+
 # Adding new folders to the project ---
 Any new folders that are used need to be added to the `vercel.json` so that Vercel 
 will actually see them and use them in deployment. Do not need to add the folders
