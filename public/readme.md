@@ -33,6 +33,8 @@ If you don't have access to the users database here is a login for the admin pag
 around using Express.js instead of Node.js for my final project
 - The previous versions of all the js files written with Node.js
 can be found in the folder `node_js_files` 
+- I have also completly changed the file structure (again)
+so it will look entierly different than before
 
 
 

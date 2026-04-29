@@ -6,6 +6,24 @@ const {MongoClient} = require('mongodb');
 const {ObjectId} = require('mongodb');
 require('dotenv').config();
 
+
+// --------- NOTE FOR SELF ------------
+
+// All stuff in the server.js in the final project example
+// will be in this file since my project has to
+// work with stupid vercel
+
+
+
+
+
+
+
+
+
+
+
+
 // Website link hosted on Vercel: https://gamer-dailies.vercel.app/
 
 // May need to refresh the page once or twice to get the database data 
