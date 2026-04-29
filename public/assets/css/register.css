@@ -1,0 +1,232 @@
+:root{
+    --main-padding: 8px;
+    --main-radius: 5px;
+    --fill-screen-height: 80vh;
+    --partial-fill-height: 60vh;
+    --option-height: 40vh;
+
+    --section-width: 150vh;
+
+    /*  main colors */
+
+    /* Green */
+    --pale-green: #E0FFCD;
+    --light-green: #BCEF9C;
+    --green: #9FE870;
+    --bright-green: #6DDC25;
+    --dark-green: #376A15;
+    --dark-green-text: #1C3709;
+
+    /* Yellow */
+    --pale-yellow: #FBFFBB;
+    --light-yellow: #F8FD89;
+    --yellow: #FFEA64;
+    --bright-yellow: #FFE228;
+    --dark-yellow: #7E6F0B;
+    --dark-yellow-text: #423904;
+
+    /* Orange */
+    --pale-orange: #FFE894;
+    --light-orange: #FFC342;
+    --orange: #FFAE17;
+    --bright-orange: #EA9902;
+    --dark-orange: #7D560B;
+    --dark-orange-text: #483004;
+
+    /* Misc */
+    --ivory-white: #FEFDEE;
+    --error-red: #F43131;
+}
+
+body{
+    font-family: "Outfit", "Times New Roman";
+
+    /* fixes white border issue */
+    margin: 0;
+    padding: 0;
+
+    background-color: var(--ivory-white);
+}
+
+/* Grid container for the main structure */
+#registerPage{
+    display: grid;
+    height: 100vh;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+
+    grid-template-areas:
+    "header"
+    "main"
+    "footer"
+    ;
+
+    background-color: var(--ivory-white);
+}
+
+header{
+    grid-area: header;
+}
+
+nav{
+    background-color: var(--dark-green-text);
+    padding: var(--main-padding);
+}
+
+main{
+    grid-area: main;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer{
+    grid-area: footer;
+
+    color: var(--dark-yellow-text);
+    background-color: var(--bright-yellow);
+    padding: var(--main-padding);
+    gap: 2rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Grid area for nav bar */
+#navContainer{
+    display: grid;
+    gap: 5rem;
+    
+    grid-template-columns: 0.8fr, 1.2fr;
+    grid-template-rows: 0.8fr;
+
+    grid-template-areas: 
+    "brandName"
+    ;
+
+}
+
+/* Flex styles for nav bar */
+#navBrandName{
+    grid-area: brandName;
+    gap: 1rem;
+
+    border-radius: var(--main-radius);
+    padding: var(--main-padding);
+    color: var(--light-green);
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#brandImage{
+    width: 60px;
+    height: 60px;
+}
+
+
+
+/* add styles for the actual register form */
+
+
+
+
+input{
+    width: 90%;
+    padding: 1% 1%;
+    margin: 5px;
+
+    border: 1px solid;
+    border-radius: 5px;
+
+    font-size: medium;
+
+}
+
+
+
+button{
+    border-radius: 10px;
+    border-width: 3px;
+    border-style: solid;
+    text-align: center;
+    font-size: 20px;
+}
+
+
+.btnPlainGreen{
+    background-color: var(--bright-green);
+    border-color: var(--bright-green);
+    color: var(--dark-green-text);
+    height: 60px;
+    width: 150px;
+
+    font-size: 25px;
+}
+
+.btnPlainGreen:hover{
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.btnPlainDarkGreen{
+    background-color: var(--dark-green);
+    border-color: var(--dark-green);
+    color: var(--bright-green);
+    height: 60px;
+    width: 150px;
+
+    font-size: 25px;
+}
+
+.btnPlainDarkGreen:hover{
+    background-color: var(--dark-green-text);
+    border-color: var(--dark-green-text);
+}
+
+.btnPlainYellow{
+    background-color: var(--bright-yellow);
+    border-color: var(--bright-yellow);
+    color: var(--dark-yellow-text);
+    height: 60px;
+    width: 160px;
+
+    font-size: 25px;
+}
+
+.btnPlainYellow:hover{
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.btnPlainOrange{
+    background-color: var(--bright-orange);
+    border-color: var(--bright-orange);
+    color: var(--dark-orange-text);
+    height: 40px;
+
+    font-size: 15px;
+}
+
+.btnPlainOrange:hover{
+    background-color: var(--orange);
+    border-color: var(--orange);
+}
+
+
+
+
+/* change this to the register button */
+#loginBtn{ 
+    height: auto;
+    width: auto;
+
+    padding: 3% 3%;
+
+    font-size: 20px;
+}

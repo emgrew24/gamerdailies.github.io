@@ -19,7 +19,7 @@ const { protect } = require('../middleware/authMiddleware');
 // ---- POST /api/users/ -------------------------- 
 // Public — no token required. Accepts { name, email, password } in the request body.
 // Registers a new user and returns a JWT so the client is authenticated immediately.
-router.post('/', registerUser)
+router.post('/register', registerUser)
 
 
 // ---- POST /api/users/login -------------------------- 

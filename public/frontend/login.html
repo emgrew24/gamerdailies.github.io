@@ -33,14 +33,18 @@
             <div id="loginContainer">
                 <h1>Sign In</h1>
                 <hr>
-                <div id="loginSection">
+                <form id="loginSection">
+                    <label for="username">Username:</label>
                     <input type="text" id="username" placeholder="Username"><br>
+
+                    <label for="password">Password:</label>
                     <input type="password" id="password" placeholder="Password"><br><br>
 
-                    <button type="button" id="loginBtn" class="btnPlainGreen"><strong>Log In</strong></button><br>
+                    <button type="submit" id="loginBtn" class="btnPlainGreen"><strong>Log In</strong></button><br>
                     <p id="errorMsg"></p>
+
                     <br><p>Don't have an account? <a href="register.html">Register Now!</a></p>
-                </div>
+                </form>
             </div>
         </main>
 
@@ -50,7 +54,7 @@
 
     </section>
     
-    <script src="/public/assets/javascript/login.js"></script>
+    <script src="js_frontend/auth.js"></script>
 
 </body>
 </html>
