@@ -2,10 +2,14 @@
 
 ========================
 # Packages Installed
+
+* `Node.js version` -------------------------------------------
 - npm init (not a package but obv to initalize the project)
-- npm install dotenv
-- npm install mongodb
-- npm install nodemon
+- npm install dotenv mongodb nodemon
+
+* `Express.js version` ----------------------------------------
+- npm init
+- npm install express dotenv mongoose bcryptjs jsonwebtoken express-async-handler
 
 =======================
 
@@ -14,14 +18,35 @@ The program is being hosted on Vercel (through the github repo)
 - https://gamer-dailies.vercel.app/
 
 
-Uses NodeJS and is attached to a MongoDB database
+Uses NodeJS* and is attached to a MongoDB database 
+* Now uses Express.js
 
 If you don't have access to the users database here is a login for the admin page
 - Username: Admin
 - Password: password123
 
 
+# ------------------------------------------------------ #
+# ================== Important !! ====================== #
 
-# Adding new folders to the project
-Any new folders that are used need to be added to the vercel.json so that Vercel 
-will actually see them and use them in deployment
+- As of 4/28/2026 I have started refactoring the program to be centered
+around using Express.js instead of Node.js for my final project
+- The previous versions of all the js files written with Node.js
+can be found in the folder `node_js_files` 
+
+
+
+
+===========================================================
+# ------------------ Vercel Notes ----------------------- #
+
+vercel is stupid and i dont like using it... but whatever im in too deep now
+
+# Adding new folders to the project ---
+Any new folders that are used need to be added to the `vercel.json` so that Vercel 
+will actually see them and use them in deployment. Do not need to add the folders
+within that folder, just needs to be able to see whatever new folder is in the root. 
+
+# Using MongoDB ---
+In order for this to work properly with Vercel you need to add the MONGO_URI
+as an `environment variable` in your Vercel `project settings`.
