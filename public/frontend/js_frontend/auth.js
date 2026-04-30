@@ -42,6 +42,11 @@ if (registerForm) {
             document.getElementById('errorMsg').textContent = 'Could not connect to server'
         }
     })
+
+    // When the user clicks the back button they return to the main page
+    document.getElementById('backBtn').addEventListener('click', ()=>{
+        window.location.href = 'index.html'
+    })
 }
 
 
