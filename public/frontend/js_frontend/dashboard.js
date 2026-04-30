@@ -15,7 +15,7 @@ document.getElementById('loginBtn').addEventListener('click', ()=>{
 
 
 async function getProducts() {
-    const res = await fetch(`${API_URL}/products`, {
+    const res = await fetch(`${API_URL}/services`, {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
     })
