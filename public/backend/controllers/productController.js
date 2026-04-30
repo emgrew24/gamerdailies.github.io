@@ -4,14 +4,27 @@ const User = require('../model/userModel') // for update and delete
 
 
 // === GET Products =================================
-const getProducts = asyncHandler(async (req, res) => {
+// const getProducts = asyncHandler(async (req, res) => {
 
-    const products = await Product.find({})
+//     const products = await Product.find({})
 
-    console.log("[API] - GET products successful")
+//     console.log("[API] - GET products successful")
 
-    res.status(200).json(products)
-})
+//     res.status(200).json(products)
+// })
+const getProducts = async (req, res) => {
+  try {
+    const db = mongoose.connection.db;
+    console.log("Connected to DB:", db.databaseName); // tells you which DB it's hitting
+    const collections = await db.listCollections().toArray();
+    console.log("Collections:", collections); // shows what collections exist
+    const products = await Product.find({});
+    console.log("Products found:", products.length);
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
 
 // === POST New Product ==============================
