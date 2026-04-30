@@ -7,42 +7,27 @@ document.getElementById('loginBtn').addEventListener('click', ()=>{
 })
 
 
-// async function getProducts() {
-//     const res = await fetch(`${API_URL}/services`, {
-//         method: 'GET',
-//         headers: {'Content-Type': 'application/json'},
-//     })
+async function getProducts() {
+    const res = await fetch(`${API_URL}/services`, {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+    })
 
-//     const products = await res.json()
+    const products = await res.json()
 
-//     if (!res.ok) {
-//         // If the request fails send an error
-//         console.log("Could not fetch products")
-//         return
-//     }
-//     console.log("[API] - Products found!")
-//     console.log(products)
+    if (!res.ok) {
+        // If the request fails send an error
+        console.log("Could not fetch products")
+        return
+    }
+    console.log("[API] - Products found!")
+    console.log(products)
 
-//     renderFeaturesList(products)
-//     renderAdditionalFeatures(products)
-//     // renderPackageDetails(products)
-// }
+    renderFeaturesList(products)
+    renderAdditionalFeatures(products)
+    // renderPackageDetails(products)
+}
 
-
-const getProducts = async (req, res) => {
-    const mongoose = require('mongoose')
-  try {
-    const db = mongoose.connection.db;
-    console.log("Connected to DB:", db.databaseName); // tells you which DB it's hitting
-    const collections = await db.listCollections().toArray();
-    console.log("Collections:", collections); // shows what collections exist
-    const products = await Product.find({});
-    console.log("Products found:", products.length);
-    res.json(products);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
 
 function renderFeaturesList(products){
     const feature_list = document.getElementById('featureList');
