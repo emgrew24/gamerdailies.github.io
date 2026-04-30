@@ -3,7 +3,7 @@ const API_URL = 'https://gamer-dailies.vercel.app/api'
 
 // When the user clicks the login button they get redirected to the login screen
 document.getElementById('loginBtn').addEventListener('click', ()=>{
-    window.location.href = '/login'
+    window.location.href = 'login.html'
 })
 
 
@@ -25,7 +25,7 @@ async function getProducts() {
 
     renderFeaturesList(products)
     renderAdditionalFeatures(products)
-    // renderPackageDetails(products)
+    renderPackageDetails(products)
 }
 
 
@@ -131,5 +131,57 @@ function renderAdditionalFeatures(products){
 }
 
 
+function renderPackageDetails(products) {
+    const install_options = document.getElementById('installOptions');
 
+    // Get all data for each individual package in a for loop
+    // - the title of the package
+    // - hardcode the id tag for each package 
+    // - a dynamic list of services (as an array to use later)
+    // - the price of the package
+
+    // Create an object to hold the data in each package
+    const packageTypes = {
+        'Basic Package': {id: 'package1', features:[], price: null},
+        'Quality Of Life Package': {id: 'package2', features:[], price: null},
+        'Deluxe Package': {id: 'package3', features:[], price: null}
+    };
+
+    products.forEach(service => {
+        // Loop through the database and add the neccessary data to the object
+        if(service.package_type in packageTypes){
+            packageTypes[service.package_type].features.push('<li>'+ service.service_title +'</li>');
+            packageTypes[service.package_type].price = service.price;
+        };
+    })
+
+    // Add each package to its own div --------------------------------
+    // - Iterate through the packageTypes object by getting 
+    //   the key-value pairs (thank you geeks for geeks & w3schools)
+    // - Build the div and insert html 
+
+    for(let [type, pkgDetail] of Object.entries(packageTypes)){       
+        const package_div = document.createElement('div');
+
+        package_div.id = pkgDetail.id
+        package_div.classList.add('installOptionStyle');
+
+        package_div.innerHTML = `
+            <h2 class="installOptionTitle centerText">${type}</h2>
+            <p class="installOptionText centerText"><b>Features this package includes:</b></p>
+            <ul class="installOptionList">
+                ${pkgDetail.features.join('')}
+            </ul>
+            <h2 class="installOptionPrice centerText">$${pkgDetail.price}</h2>
+            <button class="installBtn btnPlainYellow">
+                <b>Install</b>
+            </button>
+        `
+        install_options.appendChild(package_div);
+    };
+
+}
+
+
+// Get all product data when the site loads
 getProducts()

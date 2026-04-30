@@ -8,7 +8,7 @@ const token = localStorage.getItem('token')
 
 // If there is no token, the user is not logged in - send them back to the login page
 if(!token){
-    window.location.href = '/login'
+    window.location.href = 'login.html'
     throw new Error('No token')
 }
 
@@ -29,7 +29,7 @@ function authHeader() {
 // Without the token, the user can no longer make authenticated requests
 document.getElementById('logoutBtn').addEventListener('click', () => {
   localStorage.removeItem('token')
-  window.location.href = '/login'
+  window.location.href = 'login.html'
 })
 
 
