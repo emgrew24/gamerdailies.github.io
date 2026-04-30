@@ -2,6 +2,8 @@
 // needs to not have a protected route so that the 
 // database data will be able to load on the page
 
+const { getProducts } = require("../../backend/controllers/productController")
+
 
 // The base URL for all API requests
 const API_URL = 'https://gamer-dailies.vercel.app/api'
@@ -80,3 +82,6 @@ function renderFeaturesList(products){
         feature_list.appendChild(feature);
     })
 }
+
+
+getProducts()
