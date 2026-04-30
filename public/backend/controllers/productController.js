@@ -13,6 +13,7 @@ const User = require('../model/userModel') // for update and delete
 //     res.status(200).json(products)
 // })
 const getProducts = async (req, res) => {
+    const mongoose = require('mongoose')
   try {
     const db = mongoose.connection.db;
     console.log("Connected to DB:", db.databaseName); // tells you which DB it's hitting

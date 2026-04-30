@@ -2,7 +2,7 @@
 // needs to not have a protected route so that the 
 // database data will be able to load on the page
 
-// const { getProducts } = require("../../backend/controllers/productController")
+const { getProducts } = require("../../backend/controllers/productController")
 
 
 // The base URL for all API requests
