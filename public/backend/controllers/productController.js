@@ -8,6 +8,8 @@ const getProducts = asyncHandler(async (req, res) => {
 
     const products = await Product.find({})
 
+    console.log("[API] - GET products successful")
+
     res.status(200).json(products)
 })
 
@@ -20,6 +22,7 @@ const setProduct = asyncHandler(async (req, res) =>{
          !req.body.service_description_short){
 
         res.status(400)
+        console.log('[API] - Missing data, cannot POST')
 
         throw new Error("Missing required inputs")
     }
@@ -35,7 +38,7 @@ const setProduct = asyncHandler(async (req, res) =>{
     )
 
     res.status(200).json(product_created)
-
+    console.log('[API] - POST successful! Product added')
 })
 
 
@@ -46,6 +49,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 
     if (!product){
         res.status(400)
+        console.log('[API] - Product not found')
         throw new Error("Product not found")
     }
 
@@ -57,7 +61,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     )
 
     res.status(200).json(updatedProduct)
-
+    console.log('[API] - PUT successful! Updated product')
 })
 
 
