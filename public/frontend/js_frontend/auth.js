@@ -63,7 +63,7 @@ if(loginForm) {
         e.preventDefault()
 
         // Read the values from the user
-        const name = document.getElementById('username').value
+        const name = document.getElementById('name').value
         const password = document.getElementById('password').value
 
         try{
