@@ -39,5 +39,5 @@ const productSchema = mongoose.Schema(
     }
 )
 
-// Export the model 
+// Export the model and have it connect
 module.exports = mongoose.model('Service', productSchema)
