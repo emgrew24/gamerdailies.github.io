@@ -30,8 +30,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 
-// Serve the frontend
-// app.use(path.join(__dirname, '../public/frontend'))
+// Serve the frontend through the vercel.json routing stuff
 
 
 // --- API Routes --------------------------------------------
