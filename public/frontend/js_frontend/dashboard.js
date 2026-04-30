@@ -2,7 +2,7 @@
 // needs to not have a protected route so that the 
 // database data will be able to load on the page
 
-const { getProducts } = require("../../backend/controllers/productController")
+// const { getProducts } = require("../../backend/controllers/productController")
 
 
 // The base URL for all API requests
@@ -10,11 +10,11 @@ const API_URL = 'https://gamer-dailies.vercel.app/api'
 
 // When the user clicks the login button they get redirected to the login screen
 document.getElementById('loginBtn').addEventListener('click', ()=>{
-    window.location.href = 'login.html'
+    window.location.href = '/login'
 })
 
 
-async function getAllProducts() {
+async function getProducts() {
     const res = await fetch(`${API_URL}/products`, {
         method: 'GET'
     })
