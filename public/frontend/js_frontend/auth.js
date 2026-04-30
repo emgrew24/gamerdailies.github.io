@@ -59,7 +59,7 @@ if(loginForm) {
 
         // Read the values from the user
         const name = document.getElementById('username').value
-        const password = documen.getElementById('password').value
+        const password = document.getElementById('password').value
 
         try{
             // Send a POST request to /api/users/login with the username and password
