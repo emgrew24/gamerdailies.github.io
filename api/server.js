@@ -30,10 +30,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 
-// Serve the entire /frontend folder as static files so Express can deliver the
-// React/HTML build directly. path.join(__dirname, '../frontend') resolves to the
-// frontend folder one level up from /backend — visiting '/' loads index.html automatically
-app.use(path.join(__dirname, '../public/frontend'))
+// Serve the frontend
+// app.use(path.join(__dirname, '../public/frontend'))
 
 
 // --- API Routes --------------------------------------------
