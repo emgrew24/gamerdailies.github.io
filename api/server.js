@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: false }))
 // Mount the product and user routers under their respective base paths.
 // All routes defined in productRoutes.js are prefixed with /api/product
 // All routes defined in userRoutes.js are prefixed with /api/users
-app.use('/api/products', require('../public/backend/routes/productRoutes'))
+app.use('/api/services', require('../public/backend/routes/productRoutes'))
 app.use('/api/users', require('../public/backend/routes/userRoutes'))
 
 
