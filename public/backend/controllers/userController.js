@@ -70,6 +70,7 @@ const loginUser = asyncHandler(async (req, res) => {
     } else {
         // Either no user found or password didn't match
         res.status(400)
+        console.log("[LOGIN] - Invalid credentials")
         throw new Error('Invalid credentials')
     }
 });

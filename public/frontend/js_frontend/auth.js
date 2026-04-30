@@ -85,6 +85,7 @@ if(loginForm) {
 
         } catch (err) {
             // Fetch failed - potential backend issue
+            console.log('[LOGIN] - Could not connect to server')
             document.getElementById('errorMsg').textContent = 'Could not connect to server'
         }
     })

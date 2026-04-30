@@ -31,20 +31,23 @@
 
         <main>
             <div id="loginContainer">
-                <h1>Sign In</h1>
+                <h1>Log In</h1>
                 <hr>
                 <form id="loginSection">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" placeholder="Username"><br>
+                    <label for="username">Name:</label>
+                    <input type="text" id="username"><br>
 
                     <label for="password">Password:</label>
-                    <input type="password" id="password" placeholder="Password"><br><br>
+                    <input type="password" id="password"><br><br>
 
                     <button type="submit" id="loginBtn" class="btnPlainGreen"><strong>Log In</strong></button><br>
-                    <p id="errorMsg"></p>
-
-                    <br><p>Don't have an account? <a href="register.html">Register Now!</a></p>
+                    
                 </form>
+
+                <p id="errorMsg" style="color:red;"></p>
+                <p id="successMsg" style="color:green;"></p>
+
+                <p>Don't have an account? <a href="register.html">Register Now!</a></p>
             </div>
         </main>
 

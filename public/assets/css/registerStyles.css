@@ -131,8 +131,33 @@ footer{
 
 
 
-/* add styles for the actual register form */
+#registerContainer{
+    margin: 4% 6%;
+    padding: 1% 4%;
+    background-color: var(--light-yellow);
+    color: var(--dark-yellow-text);
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border: 5px solid var(--dark-yellow);
+    border-radius: 8px;
+
+}
+
+#registerForm{
+    margin-top: 8%;
+    padding: 4% 2%;
+}
+
+
+hr{
+    float: left;
+    border: 3px solid var(--dark-yellow-text);
+    border-radius: 3px;
+    width: 100%;
+}
 
 
 
@@ -222,7 +247,7 @@ button{
 
 
 /* change this to the register button */
-#loginBtn{ 
+#registerBtn{ 
     height: auto;
     width: auto;
 
