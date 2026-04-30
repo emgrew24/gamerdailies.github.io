@@ -30,13 +30,13 @@ async function getProducts() {
     console.log("[API] - Products found!")
     console.log(products)
 
-    await renderFeaturesList(products)
+    renderFeaturesList(products)
     renderAdditionalFeatures(products)
     // renderPackageDetails(products)
 }
 
 
-async function renderFeaturesList(products){
+function renderFeaturesList(products){
     const feature_list = document.getElementById('featureList');
 
     // Filter for just the basic package items and display those only
