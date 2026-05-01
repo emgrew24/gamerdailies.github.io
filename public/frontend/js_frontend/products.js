@@ -36,7 +36,7 @@ document.getElementById('logoutBtn').addEventListener('click', () => {
 async function getProducts() {
     const res = await fetch(`${API_URL}/services`, {
         method: 'GET',
-        headers: authHeader()
+        headers: {'Content-Type': 'application/json'},
     })
 
     const products = await res.json()
