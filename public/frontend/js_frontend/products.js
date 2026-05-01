@@ -81,7 +81,7 @@ function renderProducts(products){
 
 
 // POST - Add a product
-document.getElementById('addBtn').addEventListener('submit', async (e) => {
+document.getElementById('addNewForm').addEventListener('submit', async (e) => {
   // Prevent page refresh
   e.preventDefault();
 
@@ -122,6 +122,7 @@ document.getElementById('addBtn').addEventListener('submit', async (e) => {
   if(!res.ok){
     document.getElementById('addMessage').style.color = 'red'
     document.getElementById('addMessage').textContent = data.message || 'Error adding product.';
+    return;
   }
       
   document.getElementById('addMessage').textContent = 'Product added!';
