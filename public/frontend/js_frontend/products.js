@@ -81,7 +81,10 @@ function renderProducts(products){
 
 
 // POST - Add a product
-document.getElementById('addBtn').addEventListener('click', () => {
+document.getElementById('addBtn').addEventListener('submit', async (e) => {
+  // Prevent page refresh
+  e.preventDefault();
+
   const idNum = document.getElementById('addIDNum').value;
   const title = document.getElementById('addTitle').value;
   const shortDesc = document.getElementById('addShortDesc').value;
