@@ -78,3 +78,7 @@ function renderProducts(products){
   html += '</ul>';
   container.innerHTML = html;
 }
+
+
+// Load the products when the page loads
+getProducts()
