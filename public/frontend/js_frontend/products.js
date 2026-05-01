@@ -80,5 +80,70 @@ function renderProducts(products){
 }
 
 
+// POST - Add a product
+document.getElementById('addBtn').addEventListener('click', () => {
+  const idNum = document.getElementById('addIDNum').value;
+  const title = document.getElementById('addTitle').value;
+  const shortDesc = document.getElementById('addShortDesc').value;
+  const longDesc = document.getElementById('addLongDesc').value;
+  const price = document.getElementById('addPrice').value;
+  const packageType = document.getElementById('addPackageType').value;
+
+  // The images are optional but everything else is required
+  const chkAddImage = document.getElementById('chkAddImage');
+  const imageLink = document.getElementById('addImage').value || null;    // Incase there is no image
+  const imageAlt = document.getElementById('addImageAlt').value || null;  // set value to null
+
+  // If the image checkbox is not checked, dont look for image field values
+  if ((!idNum || !title || !shortDesc || !longDesc || !price || !packageType) && !chkAddImage.checked) {
+      document.getElementById('addMessage').textContent = 'All fields except product image are required.';
+      return;
+  }
+  // If the image checkbox is checked, check image field values
+  else if ((!idNum || !title || !shortDesc || !longDesc || !price || !packageType || !imageLink || !imageAlt) && chkAddImage.checked){
+      document.getElementById('addMessage').textContent = 'All fields including product image and image alt are required.';
+      return;
+  }
+
+
+  const res = await fetch(`${API_URL}/services`, {
+    method: 'POST',
+    headers: authHeader(),
+    body: JSON.stringify({ id: Number(idNum), service_title: title, service_description_short: shortDesc, 
+        service_description_extended: longDesc, package_type: packageType, price: Number(price), 
+        product_image: imageLink, image_alt: imageAlt })
+  })
+
+  const data = await res.json()
+
+  if(!res.ok){
+    document.getElementById('addMessage').style.color = 'red'
+    document.getElementById('addMessage').textContent = data.message || 'Error adding product.';
+  }
+      
+  document.getElementById('addMessage').textContent = 'Product added!';
+
+  // Reset all input fields
+  document.getElementById('addIDNum').value = '';
+  document.getElementById('addTitle').value = '';
+  document.getElementById('addShortDesc').value = '';
+  document.getElementById('addLongDesc').value = '';
+  document.getElementById('addPrice').value = '';
+  document.getElementById('addPackageType').value = '';
+
+  if(chkAddImage.checked){
+      document.getElementById('addImage').value = '';    
+      document.getElementById('addImageAlt').value = ''; 
+  }
+
+
+  
+  
+});
+
+
+
+
+
 // Load the products when the page loads
 getProducts()

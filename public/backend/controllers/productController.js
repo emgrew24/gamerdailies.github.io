@@ -19,7 +19,9 @@ const setProduct = asyncHandler(async (req, res) =>{
 
     // validate there is text in the required fields
     if(!req.body.id || !req.body.service_title ||
-         !req.body.service_description_short){
+         !req.body.service_description_short || 
+         !req.body.service_description_extended ||
+         !req.body.package_type || !req.body.price){
 
         res.status(400)
         console.log('[API] - Missing data, cannot POST')
@@ -32,8 +34,11 @@ const setProduct = asyncHandler(async (req, res) =>{
         {
             id: req.body.id,
             service_title: req.body.service_title,
-            service_description_short: req.body.service_description_short
-            // wait to add the rest to see if this even works
+            service_description_short: req.body.service_description_short,
+            service_description_extended: req.body.service_description_extended,
+            package_type: req.body.package_type,
+            price: req.body.price,
+
         }
     )
 

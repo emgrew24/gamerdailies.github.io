@@ -223,7 +223,7 @@ footer{
     padding: var(--main-padding);
     gap: 1rem;
 
-    color: var(--pale-green);
+    color: var(--ivory-white);
     font-size: 20px;
     font-weight: 400;
 
@@ -255,7 +255,7 @@ footer{
     border-radius: var(--main-radius);
     padding: var(--main-padding);
 
-    color: var(--pale-green);
+    color: var(--ivory-white);
     font-weight: 400;
 
     display: flex;
