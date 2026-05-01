@@ -26,6 +26,14 @@ If you don't have access to the users database here is a login for the admin pag
 - Password: password123
 
 
+# ------- Alt Logins ------- #
+- User: Fish
+- Password: shark456
+
+- User: svsu
+- Password: cardinal
+
+
 # ------------------------------------------------------ #
 # ================== Important !! ====================== #
 

@@ -33,5 +33,48 @@ document.getElementById('logoutBtn').addEventListener('click', () => {
 })
 
 
+async function getProducts() {
+    const res = await fetch(`${API_URL}/services`, {
+        method: 'GET',
+        headers: authHeader()
+    })
 
-// this basically becomes what my admin.js was
+    const products = await res.json()
+
+    if (!res.ok) {
+        // If the request fails send an error
+        console.log("Could not fetch products")
+        return
+    }
+    console.log("[API] - Products found!")
+    console.log(products)
+
+    renderProducts(products)
+}
+
+
+function renderProducts(products){
+  const container = document.getElementById('allProductData');
+  if (products.length === 0) {
+      container.innerHTML = '<p>No products found.</p>';
+      return;
+  }
+  let html = '<ul class="productList dotStyle">';
+  products.forEach(service => {
+      html += `<li class="productData">
+          <strong>${service.service_title}</strong>
+          — <small><strong>_id: ${service._id}</strong></small>
+          <ul class="dataSubCategory">
+              <li><strong>Product ID:</strong> ${service.id} </li>
+              <li><strong>Package:</strong>  ${service.package_type} </li>
+              <li><strong>Price:</strong>  ${service.price} </li>
+              <li><strong>Image Link:</strong>  ${service.product_image ? '' + service.product_image + '' : 'No Image'} </li>
+              <li><strong>Image Alt:</strong>  ${service.product_image ? '' + service.image_alt + '' : 'No Image'} </li>
+              <li><strong>Short Description:</strong>  ${service.service_description_short} </li>
+              <li><strong>Extended Description:</strong>  ${service.service_description_extended} </li>
+          </ul>
+      </li>`;
+  });
+  html += '</ul>';
+  container.innerHTML = html;
+}
