@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node api/index.js",
-    "dev": "npx nodemon api/index.js"
+    "dev": "npx nodemon api/server.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

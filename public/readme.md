@@ -24,7 +24,7 @@ Uses NodeJS* and is attached to a MongoDB database
 If you don't have access to the users database here is a login for the admin page
 - Username: Admin
 - Password: password123
-
+(super secure I know!)
 
 # ------- Alt Logins ------- #
 - User: Fish
@@ -32,6 +32,13 @@ If you don't have access to the users database here is a login for the admin pag
 
 - User: svsu
 - Password: cardinal
+
+
+# --------
+I plan to go back and make detailed comments on everything
+but since im turning this in as an assignment and am slightly
+pressed for time that will have to happen at a later date
+
 
 
 # ------------------------------------------------------ #
