@@ -13,6 +13,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // Validate all required fields are present
     if (!name || !password){
+        console.log('[REGISTER] - Enter values in all fields')
         throw new Error("Please enter all fields")
     };
 
@@ -43,6 +44,7 @@ const registerUser = asyncHandler(async (req, res) => {
         })
     } else {
         // If User.create() failed in some way
+        console.log("[REGISTER] - Invalid user data")
         res.status(400)
         throw new Error('Invalid user data')
     }

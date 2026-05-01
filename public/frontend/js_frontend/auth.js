@@ -17,7 +17,7 @@ if (registerForm) {
 
         try{
             // Send a POST request to api/users with the data
-            const res = await fetch(`${API_URL}/users`, {
+            const res = await fetch(`${API_URL}/users/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, password })
