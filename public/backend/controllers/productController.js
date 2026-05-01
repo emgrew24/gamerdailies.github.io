@@ -8,7 +8,7 @@ const getProducts = asyncHandler(async (req, res) => {
 
     const products = await Product.find({})
 
-    console.log("[API] - GET products successful")
+    console.log("[GET] - GET products successful")
 
     res.status(200).json(products)
 })
@@ -23,8 +23,8 @@ const setProduct = asyncHandler(async (req, res) =>{
          !req.body.service_description_extended ||
          !req.body.package_type || !req.body.price){
 
+        console.log('[POST] - Missing data, cannot POST')
         res.status(400)
-        console.log('[API] - Missing data, cannot POST')
 
         throw new Error("Missing required inputs")
     }
@@ -42,31 +42,32 @@ const setProduct = asyncHandler(async (req, res) =>{
         }
     )
 
+    console.log('[POST] - POST successful! Product added')
     res.status(200).json(product_created)
-    console.log('[API] - POST successful! Product added')
 })
 
 
 // === PUT Update Product ==============================
 const updateProduct = asyncHandler(async (req, res) => {
 
+    // Look up the note by the id
     const product = await Product.findById(req.params.id)
 
     if (!product){
+        console.log('[PUT] - Product not found')
         res.status(400)
-        console.log('[API] - Product not found')
         throw new Error("Product not found")
     }
 
     
-    const updatedProduct = await Product.findByIDAndUpdate(
+    const updatedProduct = await Product.findByIdAndUpdate(
         req.params.id,
-        {service_title: req.body.service_title},   // will need to fix this
+        {$set: req.body},   // will grab any valid data from updates
         {new: true}
     )
 
+    console.log('[PUT] - PUT successful! Updated product')
     res.status(200).json(updatedProduct)
-    console.log('[API] - PUT successful! Updated product')
 })
 
 
@@ -76,6 +77,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id)
 
     if (!product){
+        console.log('[DELETE] - Product not found')
         res.status(400)
         throw new Error("Product not found")
     }
@@ -83,6 +85,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
     await product.deleteOne()
 
+    console.log('[DELETE] - DELETE successful! Deleted product')
     res.status(200).json({message: `Deleted Product ${req.params.id}`})
 
 })

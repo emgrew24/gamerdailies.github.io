@@ -65,3 +65,6 @@ within that folder, just needs to be able to see whatever new folder is in the r
 # Using MongoDB ---
 In order for this to work properly with Vercel you need to add the MONGO_URI
 as an `environment variable` in your Vercel `project settings`.
+
+`!!! THIS APPLIES TO ANY ENV VARIABLE THAT IS USED IN THE PROJECT !!!`
+(found that out the hard way...)
