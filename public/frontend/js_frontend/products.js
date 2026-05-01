@@ -8,8 +8,8 @@ const token = localStorage.getItem('token')
 
 // If there is no token, the user is not logged in - send them back to the login page
 if(!token){
-    window.location.href = 'login.html'
-    throw new Error('No token')
+  window.location.href = 'login.html'
+  throw new Error('No token')
 }
 
 
@@ -34,38 +34,38 @@ document.getElementById('logoutBtn').addEventListener('click', () => {
 
 // Display add image options when checkbox is checked
 document.getElementById('chkAddImage').addEventListener('click', ()=>{
-    const addImage = document.getElementById('addImage')
-    const addImageAlt = document.getElementById('addImageAlt')
+  const addImage = document.getElementById('addImage')
+  const addImageAlt = document.getElementById('addImageAlt')
 
-    if(chkAddImage.checked){
-        addImage.classList.add('visible');
-        addImageAlt.classList.add('visible');
-    }
-    else{
-        addImage.classList.remove('visible');
-        addImageAlt.classList.remove('visible');
-    }
+  if(chkAddImage.checked){
+      addImage.classList.add('visible');
+      addImageAlt.classList.add('visible');
+  }
+  else{
+      addImage.classList.remove('visible');
+      addImageAlt.classList.remove('visible');
+  }
 
 });
 
 
 async function getProducts() {
-    const res = await fetch(`${API_URL}/services`, {
-        method: 'GET',
-        headers: {'Content-Type': 'application/json'},
-    })
+  const res = await fetch(`${API_URL}/services`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'},
+  })
 
-    const products = await res.json()
+  const products = await res.json()
 
-    if (!res.ok) {
-        // If the request fails send an error
-        console.log("Could not fetch products")
-        return
-    }
-    console.log("[API] - Products found!")
-    console.log(products)
+  if (!res.ok) {
+      // If the request fails send an error
+      console.log("Could not fetch products")
+      return
+  }
+  console.log("[API] - Products found!")
+  console.log(products)
 
-    renderProducts(products)
+  renderProducts(products)
 }
 
 
@@ -164,69 +164,105 @@ document.getElementById('addNewForm').addEventListener('submit', async (e) => {
 
 // PUT - Update a product
 document.getElementById('updateForm').addEventListener('submit', async (e) => {
-    const databaseID = document.getElementById('updateDatabaseID').value;
-    if (!databaseID) {
-        document.getElementById('updateMessage').textContent = 'Product Database ID (_id) is required.';
-        return;
-    }
+  // Prevent page refresh
+  e.preventDefault();
+  
+  const databaseID = document.getElementById('updateDatabaseID').value;
+  if (!databaseID) {
+      document.getElementById('updateMessage').textContent = 'Product Database ID (_id) is required.';
+      return;
+  }
 
-    // Get all values of all fields
-    const updates = {};
-    const idNum = document.getElementById('updateIDNum').value;
-    const title = document.getElementById('updateTitle').value;
-    const shortDesc = document.getElementById('updateShortDesc').value;
-    const longDesc = document.getElementById('updateLongDesc').value;
-    const price = document.getElementById('updatePrice').value;
-    const packageType = document.getElementById('updatePackageType').value;
-    const imageLink = document.getElementById('updateImage').value;   
-    const imageAlt = document.getElementById('updateImageAlt').value;
+  // Get all values of all fields
+  const updates = {};
+  const idNum = document.getElementById('updateIDNum').value;
+  const title = document.getElementById('updateTitle').value;
+  const shortDesc = document.getElementById('updateShortDesc').value;
+  const longDesc = document.getElementById('updateLongDesc').value;
+  const price = document.getElementById('updatePrice').value;
+  const packageType = document.getElementById('updatePackageType').value;
+  const imageLink = document.getElementById('updateImage').value;   
+  const imageAlt = document.getElementById('updateImageAlt').value;
 
-    
-    // Check if data is entered into any of the fields
-    if (idNum) updates.id = Number(idNum);
-    if (title) updates.service_title = title;
-    if (shortDesc) updates.service_description_short = shortDesc;
-    if (longDesc) updates.service_description_extended = longDesc;
-    if (packageType !== 'No Change') updates.package_type = packageType;
-    if (price) updates.price = Number(price);
-    if (imageLink) updates.product_image = imageLink;
-    if (imageAlt) updates.image_alt = imageAlt;
+  
+  // Check if data is entered into any of the fields
+  if (idNum) updates.id = Number(idNum);
+  if (title) updates.service_title = title;
+  if (shortDesc) updates.service_description_short = shortDesc;
+  if (longDesc) updates.service_description_extended = longDesc;
+  if (packageType !== 'No Change') updates.package_type = packageType;
+  if (price) updates.price = Number(price);
+  if (imageLink) updates.product_image = imageLink;
+  if (imageAlt) updates.image_alt = imageAlt;
 
-    if (Object.keys(updates).length === 0) {
-        document.getElementById('updateMessage').textContent = 'Provide at least one field to update.';
-        return;
-    }
+  if (Object.keys(updates).length === 0) {
+      document.getElementById('updateMessage').textContent = 'Provide at least one field to update.';
+      return;
+  }
 
-    const res = await fetch(`${API_URL}/services/${databaseID}`, {
-        method: 'PUT',
-        headers: authHeader(),
-        body: JSON.stringify(updates)
-    })
-    
-    const data = await res.json()
+  const res = await fetch(`${API_URL}/services/${databaseID}`, {
+      method: 'PUT',
+      headers: authHeader(),
+      body: JSON.stringify(updates)
+  })
+  
+  const data = await res.json()
 
-    if (!res.ok){
-      document.getElementById('updateMessage').style.color = 'red'
-      document.getElementById('updateMessage').textContent = 'Error updating product.';
-      return
-    }
-    
-    document.getElementById('updateMessage').textContent = 'Product updated!';
+  if (!res.ok){
+    document.getElementById('updateMessage').style.color = 'red'
+    document.getElementById('updateMessage').textContent = 'Error updating product.';
+    return
+  }
+  
+  document.getElementById('updateMessage').textContent = 'Product updated!';
 
-    // Reset all input fields
-    document.getElementById('updateDatabaseID').value = '';
-    document.getElementById('updateIDNum').value = '';
-    document.getElementById('updateTitle').value = '';
-    document.getElementById('updateShortDesc').value = '';
-    document.getElementById('updateLongDesc').value = '';
-    document.getElementById('updatePrice').value = '';
-    document.getElementById('updatePackageType').value = '';
-    document.getElementById('updateImage').value = '';
-    document.getElementById('updateImageAlt').value = '';
-    
-    getProducts()
+  // Reset all input fields
+  document.getElementById('updateDatabaseID').value = '';
+  document.getElementById('updateIDNum').value = '';
+  document.getElementById('updateTitle').value = '';
+  document.getElementById('updateShortDesc').value = '';
+  document.getElementById('updateLongDesc').value = '';
+  document.getElementById('updatePrice').value = '';
+  document.getElementById('updatePackageType').value = '';
+  document.getElementById('updateImage').value = '';
+  document.getElementById('updateImageAlt').value = '';
+  
+  getProducts()
 });
 
 
-// Load the products when the page loads
+// DELETE - Delete a product
+document.getElementById('deleteForm').addEventListener('submit', async (e) => {
+  // Prevent page refresh
+  e.preventDefault();  
+  
+  const databaseID = document.getElementById('deleteDatabaseID').value;
+  if (!databaseID) {
+      document.getElementById('deleteMessage').textContent = 'Product Database ID (_id) is required.';
+      return;
+  }
+
+  const res = await fetch(`${API_URL}/services/${databaseID}`, {
+      method: 'DELETE',
+      headers: authHeader()
+  })
+
+  const data = await res.json()
+
+  if (!res.ok){
+    document.getElementById('deleteMessage').textContent = 'Error deleting product.';
+    return
+  }
+
+  document.getElementById('deleteMessage').textContent = 'Product deleted!';
+  
+  // Reset all input fields
+  document.getElementById('deleteDatabaseID').value = '';
+  document.getElementById('deleteTitle').value = '';
+
+  getProducts()
+});
+
+
+// Get the products when the page loads
 getProducts()
