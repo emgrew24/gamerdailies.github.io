@@ -351,6 +351,14 @@ input{
 
 }
 
+select{
+    font-family: "Outfit", "Times New Roman";
+}
+
+option{
+    font-family: "Outfit", "Times New Roman";
+}
+
 .packageDropdown{
     width: 40%;
     padding: 1% 1%;
