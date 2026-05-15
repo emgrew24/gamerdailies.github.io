@@ -183,6 +183,7 @@ input{
     border-radius: 5px;
 
     font-size: medium;
+    font-family: "Outfit", "Times New Roman";
 
 }
 
@@ -194,6 +195,7 @@ button{
     border-style: solid;
     text-align: center;
     font-size: 20px;
+    font-family: "Outfit", "Times New Roman";
 }
 
 

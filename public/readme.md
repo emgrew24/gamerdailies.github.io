@@ -40,6 +40,11 @@ but since im turning this in as an assignment and am slightly
 pressed for time that will have to happen at a later date
 
 
+# --------
+Realized that I never applied the font I was using on the entire site to 
+the buttons so now I fixed that. Also applied it to all the inputs - 5/15/2026
+
+
 
 # ------------------------------------------------------ #
 # ================== Important !! ====================== #
